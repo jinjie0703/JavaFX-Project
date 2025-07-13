@@ -1,0 +1,13 @@
+[
+  {
+    "id": "bad6780e-5876-4c26-b53c-a645f02064e9",
+    "name": "java",
+    "quantity": 1,
+    "description": "java",
+    "imagePath": "images/1752383751027_20240616_134356_119225168_p0.jpg",
+    "tradeLocation": "1",
+    "contact": "1",
+    "owner": "abc",
+    "status": "APPROVED"
+  }
+]

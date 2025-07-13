@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.UserMainViewController">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10;">
+            <Label fx:id="welcomeLabel"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="发布我的二手物品" onAction="#handleSubmitNewItem"/>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="itemsTable">
+            <columns>
+                <TableColumn fx:id="nameCol" text="名称"/>
+                <TableColumn fx:id="descCol" text="描述"/>
+                <TableColumn fx:id="contactCol" text="联系方式"/>
+                <TableColumn fx:id="locationCol" text="交易地点"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.wust.secondhand.controllers.LoginController"
+      alignment="CENTER" spacing="10" style="-fx-padding: 20;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="校园二手交易系统"/>
+    <TextField fx:id="usernameField" promptText="用户名"/>
+    <PasswordField fx:id="passwordField" promptText="密码"/>
+    <Button text="登录" onAction="#handleLogin"/>
+    <Label fx:id="errorMessage" style="-fx-text-fill: red;"/>
+</VBox>
