@@ -36,13 +36,13 @@ public class Main extends Application {
     }
 
     public static void showAdminView() throws IOException {
-        Scene scene = FxmlManager.load("fxml/AdminMainView.fxml", 800, 600);
+        Scene scene = FxmlManager.load("fxml/AdminMainView.fxml", 1000, 600);
         primaryStage.setTitle("管理员后台");
         primaryStage.setScene(scene);
     }
 
     public static void showUserView() throws IOException {
-        Scene scene = FxmlManager.load("fxml/UserMainView.fxml", 800, 600);
+        Scene scene = FxmlManager.load("fxml/UserMainView.fxml", 1000, 600);
         primaryStage.setTitle("武科大二手市场");
         primaryStage.setScene(scene);
     }

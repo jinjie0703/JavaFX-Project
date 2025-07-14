@@ -66,4 +66,16 @@ public class LoginController {
             Main.showUserView();
         }
     }
+
+    @FXML
+    private void initialize() {
+        usernameField.setOnAction(e -> passwordField.requestFocus());
+        passwordField.setOnAction(e -> {
+            try {
+                handleLogin();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
 }

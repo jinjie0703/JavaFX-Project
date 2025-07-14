@@ -75,25 +75,30 @@ public class DataManager {
             Type itemListType = new TypeToken<ArrayList<Item>>(){}.getType();
             List<Item> loadedItems = gson.fromJson(reader, itemListType);
             if (loadedItems != null) {
-                loadedItems.forEach(Item::statusProperty);
+                loadedItems.forEach(item -> {
+                    // 确保 status 字段正确映射到枚举
+                    if (item.getStatus() == null) {
+                        item.setStatus(ItemStatus.PENDING); // 默认值
+                    }
+                    item.statusProperty(); // 确保初始化 statusProperty
+                });
                 items.addAll(loadedItems);
+                System.out.println("加载的物品数据: " + loadedItems); // 调试输出
             }
-        } catch (IOException e) { /* 文件可能尚不存在 */ }
+        } catch (IOException e) {
+            System.err.println("加载物品数据时出错: " + e.getMessage()); // 错误日志
+        }
     }
 
     public void reloadData() {
-        // 在重新加载前，确保清空操作在JavaFX应用线程上执行
-        javafx.application.Platform.runLater(() -> {
-            items.clear();
-            // 注意：我们通常不需要清空users列表，因为它在程序生命周期内一般不应从外部改变
-            // users.clear();
-        });
-
-        // 从�����件重新加载物品数据
-        // 因为loadItems会先清空再添加，所以上面的clear()主要是为了视觉上的即时响应
+        // 清空并重新加载物品数据
+        items.clear();
         loadItems();
 
-        System.out.println("数据已从文件重新加载！");
+        // 确保在 JavaFX 应用线程上更新界面
+        javafx.application.Platform.runLater(() -> {
+            System.out.println("数据已从文件重新加载！");
+        });
     }
 
     public void saveItems() {
@@ -127,13 +132,13 @@ public class DataManager {
 
     public void deleteItem(Item item) {
         String imagePathString = item.getImagePath();
-        if (imagePathString != null && !imagePathString.isEmpty() && !imagePathString.equals("images/default.png")) {
+        if (imagePathString != null && !imagePathString.isEmpty()) {
             try {
                 java.nio.file.Path imageFileToDelete = java.nio.file.Paths.get("src/main/resources/com/wust/secondhand/" + imagePathString);
                 java.nio.file.Files.deleteIfExists(imageFileToDelete);
                 System.out.println("成功删除了关联图片: " + imageFileToDelete);
             } catch (Exception e) {
-                System.err.println("删除图片文件时出错: " + imagePathString);
+                System.err.println("删除图片文件时���错: " + imagePathString);
                 e.printStackTrace();
             }
         }
@@ -143,6 +148,7 @@ public class DataManager {
 
     public void approveItem(Item item) {
         item.setStatus(ItemStatus.APPROVED);
+        saveItems(); // 审核后立即保存到文件
     }
 
     public ObservableList<Item> getApprovedItems() {

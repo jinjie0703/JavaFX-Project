@@ -48,7 +48,7 @@ public class AdminMainViewController {
         addSelectionListener(pendingTable);
         addSelectionListener(approvedTable);
 
-        // 点击一个表格时，清空另一个表格的选择
+        // 点击���个表格时，清空另一个表格的选择
         pendingTable.setOnMouseClicked(event -> approvedTable.getSelectionModel().clearSelection());
         approvedTable.setOnMouseClicked(event -> pendingTable.getSelectionModel().clearSelection());
 
@@ -59,6 +59,11 @@ public class AdminMainViewController {
     private void handleRefreshData() {
         System.out.println("手动刷新数据...");
         dataManager.reloadData();
+
+        // 重新绑定表格数据
+        pendingTable.setItems(dataManager.getItems().filtered(p -> p.getStatus() == ItemStatus.PENDING));
+        approvedTable.setItems(dataManager.getItems().filtered(p -> p.getStatus() == ItemStatus.APPROVED));
+
         showAlert(Alert.AlertType.INFORMATION, "刷新成功", "数据已从文件重新加载！");
     }
 
@@ -126,7 +131,7 @@ public class AdminMainViewController {
             // 关闭当前窗口
             currentStage.close();
 
-            // 调用 Main 类中的静态方法，重新显示登录窗口
+            // 调用 Main 类中的静态方法，重新显��登录窗口
             com.wust.secondhand.Main.showLoginView();
         } catch (IOException e) {
             e.printStackTrace();
