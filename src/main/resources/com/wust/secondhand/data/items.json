@@ -19,7 +19,7 @@
     "tradeLocation": "2",
     "contact": "2",
     "owner": "abc",
-    "status": "PENDING"
+    "status": "APPROVED"
   },
   {
     "id": "2b374405-d45b-44bd-bf1c-dc740fcecfe1",
@@ -30,6 +30,28 @@
     "tradeLocation": "3",
     "contact": "4",
     "owner": "abc",
-    "status": "PENDING"
+    "status": "APPROVED"
+  },
+  {
+    "id": "97b73754-8e30-4c6b-949a-d5c157206cc8",
+    "name": "java",
+    "quantity": 1,
+    "description": "javafx",
+    "imagePath": "images/bcd1/1752469742585_20240616_135121_119635061_p0.png",
+    "tradeLocation": "111",
+    "contact": "222",
+    "owner": "bcd1",
+    "status": "APPROVED"
+  },
+  {
+    "id": "defbb942-e865-45e1-a492-c53830295299",
+    "name": "java",
+    "quantity": 2,
+    "description": "23331",
+    "imagePath": "images/bcd1/1752469765110_20240616_135336_119660720_p0.png",
+    "tradeLocation": "2222",
+    "contact": "3333",
+    "owner": "bcd1",
+    "status": "APPROVED"
   }
 ]

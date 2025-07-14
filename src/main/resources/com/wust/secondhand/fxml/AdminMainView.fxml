@@ -64,6 +64,13 @@
                         </HBox>
                     </children>
                 </VBox>
+                <!-- 退出登录按钮 -->
+                <Pane VBox.vgrow="ALWAYS" /> <!-- 一个弹簧，把按钮推到最底部 -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleLogout" text="退出登录" />
+                    </children>
+                </HBox>
             </children>
         </VBox>
     </left>

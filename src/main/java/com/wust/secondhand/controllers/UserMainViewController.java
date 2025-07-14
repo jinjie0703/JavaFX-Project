@@ -87,30 +87,33 @@ public class UserMainViewController {
      */
     @FXML
     private void handleSearch() {
-        String keyword = searchField.getText().toLowerCase().trim();
+        String keyword = searchField.getText().toLowerCase();
         if (keyword.isEmpty()) {
-            // 如果关键字为空，重置过滤器，显示所有已上架物品
-            filteredMarketItems.setPredicate(p -> p.getStatus() == ItemStatus.APPROVED);
+            marketItemsTable.setItems(dataManager.getApprovedItems());
+            myItemsTable.setItems(dataManager.getItemsByUser(currentUsername));
             return;
         }
 
-        // 设置新的过滤条件
-        filteredMarketItems.setPredicate(item ->
-                item.getStatus() == ItemStatus.APPROVED && (
-                        item.getName().toLowerCase().contains(keyword) ||
-                                item.getDescription().toLowerCase().contains(keyword) ||
-                                item.getContact().toLowerCase().contains(keyword)
-                )
-        );
+        marketItemsTable.setItems(dataManager.getApprovedItems().filtered(item ->
+                item.getName().toLowerCase().contains(keyword) ||
+                        item.getDescription().toLowerCase().contains(keyword) ||
+                        item.getContact().toLowerCase().contains(keyword)
+        ));
+
+        myItemsTable.setItems(dataManager.getItemsByUser(currentUsername).filtered(item ->
+                item.getName().toLowerCase().contains(keyword) ||
+                        item.getDescription().toLowerCase().contains(keyword)
+        ));
     }
 
     /**
-     * 清空搜索框并重置列表
+     * 清空搜索框并重置表格视图
      */
     @FXML
     private void handleClearSearch() {
         searchField.clear();
-        filteredMarketItems.setPredicate(p -> p.getStatus() == ItemStatus.APPROVED);
+        marketItemsTable.setItems(dataManager.getApprovedItems());
+        myItemsTable.setItems(dataManager.getItemsByUser(currentUsername));
     }
 
     /**
@@ -152,6 +155,22 @@ public class UserMainViewController {
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleLogout() {
+        try {
+            // 获取当前按钮所在的窗口 (Stage)
+            Stage currentStage = (Stage) welcomeLabel.getScene().getWindow();
+            // 关闭当前窗口
+            currentStage.close();
+
+            // 调用 Main 类中的静态方法，重新显示登录窗口
+            com.wust.secondhand.Main.showLoginView();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "错误", "返回登录页面时发生错误！");
         }
     }
 

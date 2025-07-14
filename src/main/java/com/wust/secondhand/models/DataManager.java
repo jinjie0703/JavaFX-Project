@@ -89,7 +89,7 @@ public class DataManager {
             // users.clear();
         });
 
-        // 从文件重新加载物品数据
+        // 从�����件重新加载物品数据
         // 因为loadItems会先清空再添加，所以上面的clear()主要是为了视觉上的即时响应
         loadItems();
 
@@ -116,6 +116,10 @@ public class DataManager {
                 .findFirst();
     }
 
+    public boolean userExists(String username) {
+        return users.stream().anyMatch(u -> u.getUsername().equals(username));
+    }
+
     public void addItem(Item item) {
         items.add(item);
         saveItems();
@@ -139,6 +143,14 @@ public class DataManager {
 
     public void approveItem(Item item) {
         item.setStatus(ItemStatus.APPROVED);
+    }
+
+    public ObservableList<Item> getApprovedItems() {
+        return items.filtered(item -> item.getStatus() == ItemStatus.APPROVED);
+    }
+
+    public ObservableList<Item> getItemsByUser(String username) {
+        return items.filtered(item -> item.getOwner().equals(username));
     }
 
     // --- Getters and Setters ---

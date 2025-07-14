@@ -9,6 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.List;
 
 public class AdminMainViewController {
 
@@ -111,6 +115,22 @@ public class AdminMainViewController {
         } else {
             // ↓↓↓ 修改这里 ↓↓↓
             showAlert(Alert.AlertType.WARNING, "操作提示", "请先在“已上架”列表中选择一个物品。");
+        }
+    }
+
+    @FXML
+    private void handleLogout() {
+        try {
+            // 获取当前按钮所在的窗口 (Stage)
+            Stage currentStage = (Stage) pendingTable.getScene().getWindow();
+            // 关闭当前窗口
+            currentStage.close();
+
+            // 调用 Main 类中的静态方法，重新显示登录窗口
+            com.wust.secondhand.Main.showLoginView();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "错误", "返回登录页面时发生错误！");
         }
     }
 
