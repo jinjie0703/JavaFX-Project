@@ -30,6 +30,8 @@
                         </Label>
                         <Pane HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleSubmitNewItem" text="发布我的二手物品" />
+                        <!-- 退出登录按钮 -->
+                        <Button mnemonicParsing="false" onAction="#handleLogout" text="退出登录" style="-fx-background-color: #6c757d;" textFill="WHITE" />
                     </children>
                 </HBox>
                 <!-- 搜索栏 -->

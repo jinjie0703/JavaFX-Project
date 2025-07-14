@@ -78,9 +78,9 @@ public class SubmitItemController {
      * @return 保存到JSON中的相对路径，例如 "images/abc/12345.jpg"
      */
     private String copyImageToStorage(File imageFile) {
-        // 默认图片路径保持不变
-        String defaultImagePath = "images/default.png";
-        if (imageFile == null) return defaultImagePath;
+        if (imageFile == null) {
+            return "";
+        }
 
         try {
             // 1. 获取当前用户名
@@ -105,7 +105,7 @@ public class SubmitItemController {
         } catch (IOException e) {
             e.printStackTrace();
             // 如果在复制过程中发生任何错误，仍然返回默认图片路径
-            return defaultImagePath;
+            return "";
         }
     }
 

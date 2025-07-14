@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.wust.secondhand.controllers.RegisterController"
+      alignment="CENTER" spacing="15" style="-fx-padding: 20;" prefWidth="350" prefHeight="350">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="新用户注册" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <TextField fx:id="usernameField" promptText="用户名" maxWidth="250" prefHeight="40"/>
+    <PasswordField fx:id="passwordField" promptText="密码" maxWidth="250" prefHeight="40"/>
+    <PasswordField fx:id="confirmPasswordField" promptText="确认密码" maxWidth="250" prefHeight="40"/>
+    <Button text="注册" onAction="#handleRegister" prefWidth="100" prefHeight="35"/>
+    <Label fx:id="messageLabel" style="-fx-text-fill: red;"/>
+</VBox>
+
