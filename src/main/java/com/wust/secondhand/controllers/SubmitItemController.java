@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -41,17 +40,26 @@ public class SubmitItemController {
 
     @FXML
     private void handleSubmit() {
-        // 数据验证
-        if (nameField.getText().isEmpty() || quantityField.getText().isEmpty()) {
-            // ... 显示错误提示 ...
+        if (nameField.getText().isBlank() || quantityField.getText().isBlank() ||
+                locationField.getText().isBlank() || contactField.getText().isBlank()) {
+            showAlert("错误", "所有字段均为必填项！");
             return;
         }
 
+        int quantity;
+        try {
+            quantity = Integer.parseInt(quantityField.getText());
+        } catch (NumberFormatException e) {
+            showAlert("错误", "数量必须是一个有效的数字！");
+            return;
+        }
+
+        // 调用我们修改后的 copyImageToStorage 方法
         String imagePath = copyImageToStorage(selectedImageFile);
 
         Item newItem = new Item(
                 nameField.getText(),
-                Integer.parseInt(quantityField.getText()),
+                quantity,
                 descriptionArea.getText(),
                 imagePath,
                 locationField.getText(),
@@ -61,26 +69,51 @@ public class SubmitItemController {
 
         DataManager.getInstance().addItem(newItem);
 
-        // 关闭窗口
         ((Stage) nameField.getScene().getWindow()).close();
     }
 
+    /**
+     * 【核心修改】将图片复制到以当前用户名命名的专属文件夹中。
+     * @param imageFile 用户选择的图片文件
+     * @return 保存到JSON中的相对路径，例如 "images/abc/12345.jpg"
+     */
     private String copyImageToStorage(File imageFile) {
-        if (imageFile == null) return "images/default.png"; // 如果未选择图片，返回一个默认图片路径
+        // 默认图片路径保持不变
+        String defaultImagePath = "images/default.png";
+        if (imageFile == null) return defaultImagePath;
 
         try {
-            Path targetDir = Paths.get("src/main/resources/com/wust/secondhand/images/");
-            Files.createDirectories(targetDir); // 确保目录存在
+            // 1. 获取当前用户名
+            String username = DataManager.getInstance().getCurrentUser().getUsername();
 
+            // 2. 构建以用户名为基础的目标文件夹路径
+            Path userImageDir = Paths.get("src/main/resources/com/wust/secondhand/images/" + username);
+
+            // 3. 确保这个文件夹存在，如果不存在，则创建它（包括父目录）
+            Files.createDirectories(userImageDir);
+
+            // 4. 构建新的文件名和最终的目标路径
             String newFileName = System.currentTimeMillis() + "_" + imageFile.getName();
-            Path targetPath = targetDir.resolve(newFileName);
+            Path targetPath = userImageDir.resolve(newFileName);
 
+            // 5. 复制文件
             Files.copy(imageFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
 
-            return "images/" + newFileName; // 返回相对路径
+            // 6. 返回包含了用户名文件夹的相对路径
+            return "images/" + username + "/" + newFileName;
+
         } catch (IOException e) {
             e.printStackTrace();
-            return "images/default.png"; // 出错时也返回默认图片
+            // 如果在复制过程中发生任何错误，仍然返回默认图片路径
+            return defaultImagePath;
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

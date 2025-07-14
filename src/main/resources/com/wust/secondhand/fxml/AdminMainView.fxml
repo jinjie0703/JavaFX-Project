@@ -14,7 +14,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
 
+<!-- 管理员界面 -->
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.AdminMainViewController">
 
     <!-- 左侧区域：包含待审核和已上架两个列表 -->
@@ -73,12 +75,18 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
             </padding>
             <children>
-                <Label text="物品详情预览">
-                    <font><Font name="System Bold" size="18.0" /></font>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="物品详情预览">
+                            <font><Font name="System Bold" size="18.0" /></font>
+                        </Label>
+                        <Pane HBox.hgrow="ALWAYS" /> <!-- 一个弹簧，把按钮推到最右边 -->
+                        <Button mnemonicParsing="false" onAction="#handleRefreshData" text="刷新数据" />
+                    </children>
                     <VBox.margin>
                         <Insets bottom="15.0" />
                     </VBox.margin>
-                </Label>
+                </HBox>
                 <!-- 使用GridPane来对齐标签和内容 -->
                 <GridPane fx:id="detailsPane" hgap="10.0" vgap="12.0">
                     <columnConstraints>
