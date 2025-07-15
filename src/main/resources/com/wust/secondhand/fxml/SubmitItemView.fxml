@@ -6,28 +6,30 @@
 <!-- 用户物品提交页面 -->
 <GridPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="com.wust.secondhand.controllers.SubmitItemController"
-          hgap="10" vgap="10" style="-fx-padding: 20;">
-    <Label text="物品名称:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-    <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+          stylesheets="@../css/SubmitltemView.css"> <!-- 关联外部CSS -->
 
-    <Label text="数量:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-    <TextField fx:id="quantityField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Label text="物品名称:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="nameField" styleClass="form-textfield" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-    <Label text="描述:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-    <TextArea fx:id="descriptionArea" GridPane.rowIndex="2" GridPane.columnIndex="1" prefRowCount="3"/>
+    <Label text="数量:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="quantityField" styleClass="form-textfield" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-    <Label text="交易地点:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-    <TextField fx:id="locationField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    <Label text="描述:" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextArea fx:id="descriptionArea" styleClass="form-textarea" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-    <Label text="联系方式:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-    <TextField fx:id="contactField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    <Label text="交易地点:" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <TextField fx:id="locationField" styleClass="form-textfield" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-    <Label text="图片:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-    <HBox spacing="10" GridPane.rowIndex="5" GridPane.columnIndex="1">
-        <Button text="选择图片..." onAction="#handleChooseImage"/>
-        <Label fx:id="imagePathLabel" text="未选择文件"/>
+    <Label text="联系方式:" styleClass="form-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <TextField fx:id="contactField" styleClass="form-textfield" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+    <Label text="图片:" styleClass="form-label" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <HBox styleClass="image-selector" GridPane.rowIndex="5" GridPane.columnIndex="1">
+        <Button text="选择图片..." onAction="#handleChooseImage" styleClass="form-button"/>
+        <Label fx:id="imagePathLabel" text="未选择文件" styleClass="form-label"/>
     </HBox>
-    <ImageView fx:id="imageView" fitHeight="100" fitWidth="100" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-    <Button text="提交审核" onAction="#handleSubmit" GridPane.rowIndex="7" GridPane.columnIndex="1" alignment="CENTER_RIGHT"/>
+    <ImageView fx:id="imageView" styleClass="image-preview" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+    <Button text="提交审核" onAction="#handleSubmit" styleClass="form-button submit-button-container" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
 </GridPane>

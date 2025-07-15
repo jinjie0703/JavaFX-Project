@@ -1,0 +1,59 @@
+/* 登录容器样式 */
+.root {
+    -fx-padding: 20px;
+    -fx-background-color: #3C465C;
+}
+
+/* 标题标签样式 */
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* 输入字段样式 */
+.input-field {
+    -fx-max-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-color: white;
+    -fx-border-radius: 4px;
+}
+
+/* 登录按钮核心样式 */
+.login-button {
+    -fx-pref-width: 160px;
+    -fx-pref-height: 40px;
+    -fx-text-fill: #78FFCD; /* 基础文字色 */
+    -fx-border-color: #78FFCD; /* 基础边框色 */
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px; /* 圆角 */
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    /* 关键：延长过渡时间至0.5秒，确保平滑 */
+    -fx-transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 鼠标悬停时的圆内柔和提亮效果 */
+.login-button:hover {
+    /* 1. 边框轻微提亮（不刺眼） */
+    -fx-border-color: #a8ffdf;
+
+    /* 2. 文字轻微提亮 */
+    -fx-text-fill: #a8ffdf;
+
+    /* 3. 圆内柔和内发光（核心效果） */
+    -fx-effect: innershadow(
+        gaussian,
+        rgba(120, 255, 205, 0.5), /* 降低不透明度至0.5，避免过亮 */
+        12,                       /* 缩小发光范围，限制在圆内 */
+        1,                        /* 发光强度集中 */
+        0, 0                      /* 居中发光，不偏移 */
+    );
+
+    /* 4. 背景轻微填充，增强圆内质感 */
+    -fx-background-color: rgba(120, 255, 205, 0.1);
+}
+/* 错误消息标签样式 */
+.error-label {
+    -fx-text-fill: red;
+}

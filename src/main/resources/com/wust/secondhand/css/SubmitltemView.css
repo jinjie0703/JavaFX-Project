@@ -1,0 +1,42 @@
+/* 主容器样式 */
+.root {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+    -fx-padding: 20;
+}
+
+/* 标签样式 */
+.form-label {
+    /* 保持原布局中标签的默认样式，仅通过选择器关联 */
+}
+
+/* 输入框样式 */
+.form-textfield {
+    /* 保持原输入框的默认行为 */
+}
+
+/* 文本区域样式 */
+.form-textarea {
+    -fx-pref-row-count: 3; /* 保留原有的行数设置 */
+}
+
+/* 按钮样式 */
+.form-button {
+    /* 保持按钮默认样式，如需定制可在此添加 */
+}
+
+/* 图片选择区域样式 */
+.image-selector {
+    -fx-spacing: 10; /* 保留原HBox的间距 */
+}
+
+/* 图片预览样式 */
+.image-preview {
+    -fx-fit-height: 100;
+    -fx-fit-width: 100;
+}
+
+/* 提交按钮容器样式 */
+.submit-button-container {
+    -fx-alignment: CENTER_RIGHT; /* 保持提交按钮右对齐 */
+}

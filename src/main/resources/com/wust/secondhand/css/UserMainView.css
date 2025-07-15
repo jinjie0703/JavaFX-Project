@@ -1,0 +1,171 @@
+/* 主容器样式 */
+.root {
+    -fx-pref-height: 600.0;
+    -fx-pref-width: 800.0;
+}
+
+/* 顶部欢迎栏样式 */
+.welcome-bar {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 10.0;
+    -fx-padding: 10.0;
+}
+
+/* 欢迎标签样式 */
+.welcome-label {
+    -fx-font-size: 14.0;
+}
+
+/* 搜索栏样式 */
+.search-bar {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 8px 10px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 10.0;
+}
+
+/* 搜索输入框样式 */
+.search-field {
+    -fx-prompt-text: "输入物品名称、描述或联系方式中的关键字...";
+}
+
+/* 表格样式 */
+.market-table {
+    /* 保留表格默认布局 */
+}
+
+/* 表格列样式 */
+.market-name-col {
+    -fx-pref-width: 150.0;
+}
+.market-desc-col {
+    -fx-pref-width: 350.0;
+}
+.market-contact-col {
+    -fx-pref-width: 120.0;
+}
+.market-owner-col {
+    -fx-pref-width: 120.0;
+}
+
+/* 我的发布表格样式 */
+.my-items-table {
+    -fx-vgrow: ALWAYS;
+}
+
+.my-name-col {
+    -fx-pref-width: 150.0;
+}
+.my-status-col {
+    -fx-pref-width: 100.0;
+}
+.my-desc-col {
+    -fx-pref-width: 400.0;
+}
+
+/* 按钮样式 */
+.action-button {
+    /* 普通按钮默认样式 */
+}
+
+/* 删除按钮样式 */
+.delete-button {
+    -fx-background-color: #d9534f;
+    -fx-text-fill: WHITE;
+}
+
+/* 我的发布容器样式 */
+.my-posts-container {
+    -fx-spacing: 10.0;
+    -fx-padding: 10.0;
+}
+
+/* 按钮容器样式 */
+.button-container {
+    -fx-alignment: CENTER_RIGHT;
+}/* 主容器样式 */
+ .root {
+     -fx-pref-height: 600.0;
+     -fx-pref-width: 800.0;
+ }
+
+ /* 顶部欢迎栏样式 */
+ .welcome-bar {
+     -fx-alignment: CENTER_LEFT;
+     -fx-spacing: 10.0;
+     -fx-padding: 10.0;
+ }
+
+ /* 欢迎标签样式 */
+ .welcome-label {
+     -fx-font-size: 14.0;
+ }
+
+ /* 搜索栏样式 */
+ .search-bar {
+     -fx-background-color: #f0f0f0;
+     -fx-padding: 8px 10px;
+     -fx-alignment: CENTER_LEFT;
+     -fx-spacing: 10.0;
+ }
+
+ /* 搜索输入框样式 */
+ .search-field {
+     -fx-prompt-text: "输入物品名称、描述或联系方式中的关键字...";
+ }
+
+ /* 表格样式 */
+ .market-table {
+     /* 保留表格默认布局 */
+ }
+
+ /* 表格列样式 */
+ .market-name-col {
+     -fx-pref-width: 150.0;
+ }
+ .market-desc-col {
+     -fx-pref-width: 350.0;
+ }
+ .market-contact-col {
+     -fx-pref-width: 120.0;
+ }
+ .market-owner-col {
+     -fx-pref-width: 120.0;
+ }
+
+ /* 我的发布表格样式 */
+ .my-items-table {
+     -fx-vgrow: ALWAYS;
+ }
+
+ .my-name-col {
+     -fx-pref-width: 150.0;
+ }
+ .my-status-col {
+     -fx-pref-width: 100.0;
+ }
+ .my-desc-col {
+     -fx-pref-width: 400.0;
+ }
+
+ /* 按钮样式 */
+ .action-button {
+     /* 普通按钮默认样式 */
+ }
+
+ /* 删除按钮样式 */
+ .delete-button {
+     -fx-background-color: #d9534f;
+     -fx-text-fill: WHITE;
+ }
+
+ /* 我的发布容器样式 */
+ .my-posts-container {
+     -fx-spacing: 10.0;
+     -fx-padding: 10.0;
+ }
+
+ /* 按钮容器样式 */
+ .button-container {
+     -fx-alignment: CENTER_RIGHT;
+ }

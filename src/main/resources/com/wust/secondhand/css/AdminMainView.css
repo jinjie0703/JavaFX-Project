@@ -1,0 +1,79 @@
+/* 主容器样式 */
+.root {
+    -fx-pref-height: 600.0;
+    -fx-pref-width: 950.0;
+}
+
+/* 左侧面板样式 */
+.left-panel {
+    -fx-pref-width: 450.0;
+    -fx-spacing: 10.0;
+    -fx-padding: 10.0;
+}
+
+/* 列表标题样式 */
+.list-title {
+    -fx-font-size: 16.0;
+    -fx-font-weight: bold;
+}
+
+/* 表格样式 */
+.item-table {
+    -fx-pref-height: 200.0;
+    -fx-pref-width: 200.0;
+}
+
+/* 表格列样式 */
+.table-column {
+    -fx-pref-width: 200.0;
+}
+
+/* 操作按钮样式 */
+.action-button {
+    -fx-pref-width: 100.0;
+}
+
+/* 删除按钮样式 */
+.delete-button {
+    -fx-background-color: #d9534f;
+    -fx-text-fill: white;
+}
+
+/* 右侧面板样式 */
+.right-panel {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 0 0 0 1;
+    -fx-padding: 10.0 20.0 20.0 20.0;
+}
+
+/* 详情标题样式 */
+.details-title {
+    -fx-font-size: 18.0;
+    -fx-font-weight: bold;
+}
+
+/* 详情标签样式 */
+.details-label {
+    -fx-font-weight: bold;
+}
+
+/* 详情内容区域样式 */
+.details-area {
+    -fx-pref-height: 200.0;
+    -fx-pref-width: 200.0;
+    -fx-wrap-text: true;
+}
+
+/* 图片预览区域样式 */
+.image-preview {
+    -fx-fit-height: 180.0;
+    -fx-fit-width: 200.0;
+    -fx-pick-on-bounds: true;
+    -fx-preserve-ratio: true;
+}
+
+/* 弹簧面板样式 */
+.spacer {
+    -fx-hgrow: always;
+}

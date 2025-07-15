@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 
 <!-- 管理员界面 -->
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.AdminMainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.AdminMainViewController" stylesheets="@../css/AdminMainView.css">
 
     <!-- 左侧区域：包含待审核和已上架两个列表 -->
     <left>

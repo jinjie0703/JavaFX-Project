@@ -19,7 +19,7 @@
     "tradeLocation": "2",
     "contact": "2",
     "owner": "abc",
-    "status": "PENDING"
+    "status": "APPROVED"
   },
   {
     "id": "2b374405-d45b-44bd-bf1c-dc740fcecfe1",
@@ -30,6 +30,17 @@
     "tradeLocation": "3",
     "contact": "4",
     "owner": "abc",
-    "status": "PENDING"
+    "status": "APPROVED"
+  },
+  {
+    "id": "4e4dd253-5983-498e-a121-84a5447ed98f",
+    "name": "马俊杰",
+    "quantity": 1,
+    "description": "一只可爱的小猫",
+    "imagePath": "images/gsz/1752543510634_屏幕截图 2024-05-20 203337.png",
+    "tradeLocation": "黄家湖南二410",
+    "contact": "17280529327",
+    "owner": "gsz",
+    "status": "APPROVED"
   }
 ]

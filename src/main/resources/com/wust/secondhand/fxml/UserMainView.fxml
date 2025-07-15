@@ -15,30 +15,27 @@
 <?import javafx.scene.text.Font?>
 
 <!-- 用户操作界面 -->
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.UserMainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.UserMainViewController" stylesheets="@../css/UserMainView.css">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
                 <!-- 欢迎语和发布按钮 -->
-                <HBox alignment="CENTER_LEFT" spacing="10.0">
-                    <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </padding>
+                <HBox styleClass="welcome-bar">
                     <children>
-                        <Label fx:id="welcomeLabel">
+                        <Label fx:id="welcomeLabel" styleClass="welcome-label">
                             <font><Font size="14.0" /></font>
                         </Label>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleSubmitNewItem" text="发布我的二手物品" />
+                        <Button mnemonicParsing="false" onAction="#handleSubmitNewItem" styleClass="action-button" text="发布我的二手物品" />
                     </children>
                 </HBox>
                 <!-- 搜索栏 -->
-                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-padding: 8px 10px;">
+                <HBox styleClass="search-bar">
                     <children>
                         <Label text="搜索市场:" />
-                        <TextField fx:id="searchField" HBox.hgrow="ALWAYS" promptText="输入物品名称、描述或联系方式中的关键字..." />
-                        <Button mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
-                        <Button mnemonicParsing="false" onAction="#handleClearSearch" text="清空" />
+                        <TextField fx:id="searchField" styleClass="search-field" HBox.hgrow="ALWAYS" promptText="输入物品名称、描述或联系方式中的关键字..." />
+                        <Button mnemonicParsing="false" onAction="#handleSearch" styleClass="action-button" text="搜索" />
+                        <Button mnemonicParsing="false" onAction="#handleClearSearch" styleClass="action-button" text="清空" />
                     </children>
                 </HBox>
             </children>
@@ -51,12 +48,12 @@
                 <!-- 第一个标签页：浏览所有商品 -->
                 <Tab text="浏览市场">
                     <content>
-                        <TableView fx:id="marketItemsTable">
+                        <TableView fx:id="marketItemsTable" styleClass="market-table">
                             <columns>
-                                <TableColumn fx:id="marketNameCol" prefWidth="150.0" text="名称" />
-                                <TableColumn fx:id="marketDescCol" prefWidth="350.0" text="描述" />
-                                <TableColumn fx:id="marketContactCol" prefWidth="120.0" text="联系方式" />
-                                <TableColumn fx:id="marketOwnerCol" prefWidth="120.0" text="发布者" />
+                                <TableColumn fx:id="marketNameCol" styleClass="market-name-col" text="名称" />
+                                <TableColumn fx:id="marketDescCol" styleClass="market-desc-col" text="描述" />
+                                <TableColumn fx:id="marketContactCol" styleClass="market-contact-col" text="联系方式" />
+                                <TableColumn fx:id="marketOwnerCol" styleClass="market-owner-col" text="发布者" />
                             </columns>
                         </TableView>
                     </content>
@@ -64,19 +61,18 @@
                 <!-- 第二个标签页：管理我的发布 -->
                 <Tab text="我的发布">
                     <content>
-                        <VBox spacing="10.0">
-                            <padding><Insets top="10.0" left="10.0" right="10.0" bottom="10.0" /></padding>
+                        <VBox styleClass="my-posts-container">
                             <children>
-                                <TableView fx:id="myItemsTable" VBox.vgrow="ALWAYS">
+                                <TableView fx:id="myItemsTable" styleClass="my-items-table">
                                     <columns>
-                                        <TableColumn fx:id="myNameCol" prefWidth="150.0" text="名称" />
-                                        <TableColumn fx:id="myStatusCol" prefWidth="100.0" text="状态" />
-                                        <TableColumn fx:id="myDescCol" prefWidth="400.0" text="描述" />
+                                        <TableColumn fx:id="myNameCol" styleClass="my-name-col" text="名称" />
+                                        <TableColumn fx:id="myStatusCol" styleClass="my-status-col" text="状态" />
+                                        <TableColumn fx:id="myDescCol" styleClass="my-desc-col" text="描述" />
                                     </columns>
                                 </TableView>
-                                <HBox alignment="CENTER_RIGHT">
+                                <HBox styleClass="button-container">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" style="-fx-background-color: #d9534f;" text="删除选中项 (交易完成)" textFill="WHITE" />
+                                        <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" styleClass="action-button delete-button" text="删除选中项 (交易完成)" />
                                     </children>
                                 </HBox>
                             </children>
