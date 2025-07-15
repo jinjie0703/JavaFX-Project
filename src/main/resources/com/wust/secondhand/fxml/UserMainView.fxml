@@ -15,8 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <!-- 用户操作界面 -->
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.UserMainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.UserMainViewController">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
@@ -39,7 +38,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-padding: 8px 10px;">
                     <children>
                         <Label text="搜索市场:" />
-                        <TextField fx:id="searchField" promptText="输入物品名称、描述或联系方式中的关键字..." HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="searchField" HBox.hgrow="ALWAYS" promptText="输入物品名称、描述或联系方式中的关键字..." />
                         <Button mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
                         <Button mnemonicParsing="false" onAction="#handleClearSearch" text="清空" />
                     </children>
@@ -56,14 +55,12 @@
                         <!-- 第一个标签页：浏览所有商品 -->
                         <Tab text="浏览市场">
                             <content>
-                                <TableView fx:id="marketItemsTable" onMouseClicked="#handleMarketTableClick">
+                                <TableView fx:id="marketItemsTable">
                                     <columns>
-                                        <TableColumn fx:id="marketNameCol" prefWidth="110.0" text="名称" />
-                                        <TableColumn fx:id="marketDescCol" prefWidth="212.0" text="描述" />
-                                        <TableColumn fx:id="marketContactCol" prefWidth="150.0" text="联系方式" />
-                                        <TableColumn prefWidth="76.0" text="交易类型" />
-                                        <TableColumn prefWidth="111.0" text="校区" />
-                                        <TableColumn fx:id="marketOwnerCol" prefWidth="137.0" text="发布者" />
+                                        <TableColumn fx:id="marketNameCol" prefWidth="150.0" text="名称" />
+                                        <TableColumn fx:id="marketDescCol" prefWidth="350.0" text="描述" />
+                                        <TableColumn fx:id="marketContactCol" prefWidth="120.0" text="联系方式" />
+                                        <TableColumn fx:id="marketOwnerCol" prefWidth="120.0" text="发布者" />
                                     </columns>
                                 </TableView>
                             </content>
@@ -72,15 +69,13 @@
                         <Tab text="我的发布">
                             <content>
                                 <VBox spacing="10.0">
-                                    <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+                                    <padding><Insets top="10.0" left="10.0" right="10.0" bottom="10.0" /></padding>
                                     <children>
-                                        <TableView fx:id="myItemsTable" prefHeight="462.0" prefWidth="814.0" VBox.vgrow="ALWAYS" onMouseClicked="#handleMyTableClick">
+                                        <TableView fx:id="myItemsTable" VBox.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="myNameCol" prefWidth="150.0" text="名称" />
                                                 <TableColumn fx:id="myStatusCol" prefWidth="100.0" text="状态" />
-                                                <TableColumn fx:id="myDescCol" prefWidth="333.0" text="描述" />
-                                                <TableColumn prefWidth="95.0" text="交易类型" />
-                                                <TableColumn prefWidth="122.0" text="校区" />
+                                                <TableColumn fx:id="myDescCol" prefWidth="400.0" text="描述" />
                                             </columns>
                                         </TableView>
                                         <HBox alignment="CENTER_RIGHT">

@@ -9,5 +9,27 @@
     "contact": "1",
     "owner": "abc",
     "status": "APPROVED"
+  },
+  {
+    "id": "3d68af0b-8f0b-4c28-b344-e55f99dfb344",
+    "name": "1",
+    "quantity": 1,
+    "description": "1",
+    "imagePath": "",
+    "tradeLocation": "1",
+    "contact": "1",
+    "owner": "abc",
+    "status": "APPROVED"
+  },
+  {
+    "id": "b6ab2162-f400-4b6c-bb82-2060b00db39d",
+    "name": "123",
+    "quantity": 123,
+    "description": "132",
+    "imagePath": "images/abc/1752542135677_20240616_134356_119225168_p0.jpg",
+    "tradeLocation": "123",
+    "contact": "123",
+    "owner": "abc",
+    "status": "APPROVED"
   }
 ]
