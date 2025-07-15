@@ -34,6 +34,13 @@ public class UserMainViewController {
     @FXML private TableColumn<Item, ItemStatus> myStatusCol;
     @FXML private TableColumn<Item, String> myDescCol;
 
+    // --- 详情区域组件 ---
+    @FXML private Label detailsNameLabel;
+    @FXML private Label detailsDescLabel;
+    @FXML private Label detailsContactLabel;
+    @FXML private Label detailsOwnerLabel;
+    @FXML private Label detailsStatusLabel;
+
     private final DataManager dataManager = DataManager.getInstance();
     private String currentUsername;
     private FilteredList<Item> filteredMarketItems; // 用于搜索的过滤列表
@@ -199,6 +206,43 @@ public class UserMainViewController {
         alert.showAndWait();
     }
 
+    /**
+     * 处理市场表格点击事件，显示详情
+     */
+    @FXML
+    private void handleMarketTableClick() {
+        Item selected = marketItemsTable.getSelectionModel().getSelectedItem();
+        showDetails(selected);
+    }
+
+    /**
+     * 处理我的发布表格点击事件，显示详情
+     */
+    @FXML
+    private void handleMyTableClick() {
+        Item selected = myItemsTable.getSelectionModel().getSelectedItem();
+        showDetails(selected);
+    }
+
+    /**
+     * 在右侧详情栏显示物品信息
+     */
+    private void showDetails(Item item) {
+        if (item == null) {
+            detailsNameLabel.setText("名称: ");
+            detailsDescLabel.setText("描述: ");
+            detailsContactLabel.setText("联系方式: ");
+            detailsOwnerLabel.setText("发布者: ");
+            detailsStatusLabel.setText("状态: ");
+            return;
+        }
+        detailsNameLabel.setText("名称: " + item.getName());
+        detailsDescLabel.setText("描述: " + item.getDescription());
+        detailsContactLabel.setText("联系方式: " + item.getContact());
+        detailsOwnerLabel.setText("发布者: " + item.getOwner());
+        detailsStatusLabel.setText("状态: " + item.getStatus().toString());
+    }
+
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -207,3 +251,4 @@ public class UserMainViewController {
         alert.showAndWait();
     }
 }
+
