@@ -20,6 +20,8 @@ public class SubmitItemController {
     @FXML private TextArea descriptionArea;
     @FXML private Label imagePathLabel;
     @FXML private ImageView imageView;
+    @FXML private ChoiceBox<String> dealChoiceBox;
+    @FXML private ChoiceBox<String> campusChoiceBox;
 
     private File selectedImageFile;
 
@@ -53,6 +55,8 @@ public class SubmitItemController {
             showAlert("错误", "数量必须是一个有效的数字！");
             return;
         }
+        String dealType = dealChoiceBox.getValue();
+        String campus = campusChoiceBox.getValue();
 
         // 调用我们修改后的 copyImageToStorage 方法
         String imagePath = copyImageToStorage(selectedImageFile);
