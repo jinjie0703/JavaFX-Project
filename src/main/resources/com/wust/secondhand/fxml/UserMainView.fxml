@@ -48,49 +48,65 @@
         </VBox>
     </top>
     <center>
-        <!-- 使用TabPane来切换视图 -->
-        <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-            <tabs>
-                <!-- 第一个标签页：浏览所有商品 -->
-                <Tab text="浏览市场">
-                    <content>
-                        <TableView fx:id="marketItemsTable">
-                            <columns>
-                                <TableColumn fx:id="marketNameCol" prefWidth="109.99996693929006" text="名称" />
-                                <TableColumn fx:id="marketDescCol" prefWidth="211.99999237060547" text="描述" />
-                                <TableColumn fx:id="marketContactCol" prefWidth="150.66668701171875" text="联系方式" />
-                        <TableColumn prefWidth="76.0001220703125" text="交易类型" />
-                        <TableColumn prefWidth="111.333251953125" text="校区" />
-                                <TableColumn fx:id="marketOwnerCol" prefWidth="137.33340454101562" text="发布者" />
-                            </columns>
-                        </TableView>
-                    </content>
-                </Tab>
-                <!-- 第二个标签页：管理我的发布 -->
-                <Tab text="我的发布">
-                    <content>
-                        <VBox spacing="10.0">
-                            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
-                            <children>
-                                <TableView fx:id="myItemsTable" prefHeight="462.0" prefWidth="814.0" VBox.vgrow="ALWAYS">
+        <HBox spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <!-- 左侧TabPane -->
+                <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" prefWidth="500.0">
+                    <tabs>
+                        <!-- 第一个标签页：浏览所有商品 -->
+                        <Tab text="浏览市场">
+                            <content>
+                                <TableView fx:id="marketItemsTable" onMouseClicked="#handleMarketTableClick">
                                     <columns>
-                                        <TableColumn fx:id="myNameCol" prefWidth="150.0" text="名称" />
-                                        <TableColumn fx:id="myStatusCol" prefWidth="100.0" text="状态" />
-                                        <TableColumn fx:id="myDescCol" prefWidth="333.3332214355469" text="描述" />
-                              <TableColumn prefWidth="95.333251953125" text="交易类型" />
-                              <TableColumn prefWidth="122.666748046875" text="校区" />
+                                        <TableColumn fx:id="marketNameCol" prefWidth="110.0" text="名称" />
+                                        <TableColumn fx:id="marketDescCol" prefWidth="212.0" text="描述" />
+                                        <TableColumn fx:id="marketContactCol" prefWidth="150.0" text="联系方式" />
+                                        <TableColumn prefWidth="76.0" text="交易类型" />
+                                        <TableColumn prefWidth="111.0" text="校区" />
+                                        <TableColumn fx:id="marketOwnerCol" prefWidth="137.0" text="发布者" />
                                     </columns>
                                 </TableView>
-                                <HBox alignment="CENTER_RIGHT">
+                            </content>
+                        </Tab>
+                        <!-- 第二个标签页：管理我的发布 -->
+                        <Tab text="我的发布">
+                            <content>
+                                <VBox spacing="10.0">
+                                    <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" style="-fx-background-color: #d9534f;" text="删除选中项 (交易完成)" textFill="WHITE" />
+                                        <TableView fx:id="myItemsTable" prefHeight="462.0" prefWidth="814.0" VBox.vgrow="ALWAYS" onMouseClicked="#handleMyTableClick">
+                                            <columns>
+                                                <TableColumn fx:id="myNameCol" prefWidth="150.0" text="名称" />
+                                                <TableColumn fx:id="myStatusCol" prefWidth="100.0" text="状态" />
+                                                <TableColumn fx:id="myDescCol" prefWidth="333.0" text="描述" />
+                                                <TableColumn prefWidth="95.0" text="交易类型" />
+                                                <TableColumn prefWidth="122.0" text="校区" />
+                                            </columns>
+                                        </TableView>
+                                        <HBox alignment="CENTER_RIGHT">
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" style="-fx-background-color: #d9534f;" text="删除选中项 (交易完成)" textFill="WHITE" />
+                                            </children>
+                                        </HBox>
                                     </children>
-                                </HBox>
-                            </children>
-                        </VBox>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+                <!-- 右侧详情栏 -->
+                <VBox fx:id="detailsPane" spacing="10.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1;" prefWidth="280.0" minWidth="220.0" maxWidth="350.0">
+                    <padding><Insets top="15.0" left="15.0" right="15.0" bottom="15.0"/></padding>
+                    <children>
+                        <Label text="物品详情" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Label fx:id="detailsNameLabel" text="名称: " />
+                        <Label fx:id="detailsDescLabel" text="描述: " wrapText="true" />
+                        <Label fx:id="detailsContactLabel" text="联系方式: " />
+                        <Label fx:id="detailsOwnerLabel" text="发布者: " />
+                        <Label fx:id="detailsStatusLabel" text="状态: " />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
     </center>
 </BorderPane>
