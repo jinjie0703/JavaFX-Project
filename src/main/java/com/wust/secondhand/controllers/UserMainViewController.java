@@ -231,9 +231,8 @@ public class UserMainViewController {
         detailsLocationLabel.setText("交易地点: " + item.getTradeLocation());
         // 图片显示逻辑
         if (item.getImagePath() != null && !item.getImagePath().isEmpty()) {
-            try {
-                String resourcePath = "/com/wust/secondhand/" + item.getImagePath();
-                java.io.InputStream stream = getClass().getResourceAsStream(resourcePath);
+            String resourcePath = "/com/wust/secondhand/" + item.getImagePath();
+            try (java.io.InputStream stream = getClass().getResourceAsStream(resourcePath)) {
                 if (stream != null) {
                     detailsImageView.setImage(new javafx.scene.image.Image(stream));
                 } else {
