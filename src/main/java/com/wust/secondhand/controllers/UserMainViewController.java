@@ -254,3 +254,32 @@ public class UserMainViewController {
         alert.showAndWait();
     }
 }
+
+    @FXML
+    private void handleMarketTableClick() {
+        Item selected = marketItemsTable.getSelectionModel().getSelectedItem();
+        showDetails(selected);
+    }
+
+    @FXML
+    private void handleMyTableClick() {
+        Item selected = myItemsTable.getSelectionModel().getSelectedItem();
+        showDetails(selected);
+    }
+
+    private void showDetails(Item item) {
+        if (item == null) {
+            detailsNameLabel.setText("名称: ");
+            detailsDescLabel.setText("描述: ");
+            detailsContactLabel.setText("联系方式: ");
+            detailsOwnerLabel.setText("发布者: ");
+            detailsStatusLabel.setText("状态: ");
+            return;
+        }
+        detailsNameLabel.setText("名称: " + item.getName());
+        detailsDescLabel.setText("描述: " + item.getDescription());
+        detailsContactLabel.setText("联系方式: " + item.getContact());
+        detailsOwnerLabel.setText("发布者: " + item.getOwner());
+        detailsStatusLabel.setText("状态: " + item.getStatus().toString());
+    }
+}
