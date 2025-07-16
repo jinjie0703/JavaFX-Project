@@ -51,6 +51,11 @@ public class UserMainViewController {
     private String currentUsername;
     private FilteredList<Item> filteredMarketItems; // 用于搜索的过滤列表
 
+    /** 方法用于初始化用户主界面，其功能如下：
+     1获取当前登录用户名并显示欢迎信息；
+     2配置“浏览市场”和“我的发布”两个表格的数据显示；
+     3为两个表格添加选中项监听器，当选中某条数据时自动在右侧详情区域展示该数据内容。
+     */
     @FXML
     public void initialize() {
         // 1. 获取当前用户名
@@ -68,8 +73,9 @@ public class UserMainViewController {
         myItemsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> showDetails(newVal));
     }
 
-    /**
-     * 配置“浏览市场”的表格
+    /** 该方法用于配置“浏览市场”表格，功能如下：
+     1将表格各列绑定到Item类的对应属性（名称、描述、联系方式、发布者）。
+     2从数据管理器中获取所有商品，并过滤出状态为APPROVED（已上架）的商品展示在表格中。
      */
     private void setupMarketTable() {
         marketNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -82,8 +88,10 @@ public class UserMainViewController {
         marketItemsTable.setItems(filteredMarketItems);
     }
 
-    /**
-     * 配置“我的发布”的表格
+    /** 该方法用于配置“我的发布”表格，功能如下：
+     1为表格的列设置数据绑定，分别显示物品名称、状态和描述；
+     2使用 FilteredList 过滤出当前用户发布的商品（根据 owner 判断）；
+     3将过滤后的列表设置为表格的数据源。
      */
     private void setupMyItemsTable() {
         myNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -95,8 +103,10 @@ public class UserMainViewController {
         myItemsTable.setItems(myItems);
     }
 
-    /**
-     * 核心功能：处理搜索
+    /** 用户在搜索框输入关键字后，对“浏览市场”和“我的发布”两个表格中的商品信息进行过滤显示的功能。
+     1获取用户输入的搜索关键词并转为小写；
+     2如果关键词为空，则显示所有已批准的商品和当前用户的发布商品；
+     3否则根据关键词对商品名称、描述或联系方式进行匹配过滤，并更新表格内容。
      */
     @FXML
     private void handleSearch() {
@@ -119,8 +129,10 @@ public class UserMainViewController {
         ));
     }
 
-    /**
-     * 清空搜索框并重置表格视图
+    /** 该方法用于清空搜索框并重置两个表格视图的数据：
+     1 searchField.clear();：清空搜索输入框的内容；
+     2 marketItemsTable.setItems(dataManager.getApprovedItems());：将“浏览市场”表格的数据设置为所有已批准的商品；
+     3 myItemsTable.setItems(dataManager.getItemsByUser(currentUsername));：将“我的发布”表格的数据设置为当前用户发布的商品。
      */
     @FXML
     private void handleClearSearch() {
@@ -129,8 +141,12 @@ public class UserMainViewController {
         myItemsTable.setItems(dataManager.getItemsByUser(currentUsername));
     }
 
-    /**
-     * 核心功能：删除用户自己的物品
+    /** 用户删除自己发布的物品功能：
+     1从“我的发布”表格中获取选中的物品；
+     2若未选择，弹出警告提示；
+     3弹出确认对话框防止误删；
+     4用户确认后，调用 dataManager.deleteItem(selectedItem) 删除该物品；
+     5因使用响应式列表，删除后界面会自动更新
      */
     @FXML
     private void handleDeleteMyItem() {
@@ -154,8 +170,12 @@ public class UserMainViewController {
         }
     }
 
-    // --- 下面是辅助方法，与之前类似 ---
-
+    /** 该方法用于处理用户点击“发布新物品”按钮的事件：
+     1使用FXMLLoader加载SubmitItemView.fxml界面文件；
+     2创建新的Scene并设置到新创建的Stage上；
+     3设置窗口标题为“发布我的二手物品”，并设为应用模态（阻塞主窗口）；
+     4显示注册窗口并等待用户操作完成。
+     */
     @FXML
     protected void handleSubmitNewItem() {
         try {
@@ -171,6 +191,11 @@ public class UserMainViewController {
         }
     }
 
+    /** 该方法用于处理用户点击“注销”按钮的事件：
+     1获取当前界面的窗口（Stage）并关闭它；
+     2调用 Main.showLoginView() 重新显示登录窗口；
+     3如果跳转过程中发生异常，捕获并弹出错误提示框。
+     */
     @FXML
     private void handleLogout() {
         try {
@@ -188,7 +213,7 @@ public class UserMainViewController {
     }
 
     /**
-     * 处理市场表格点击事件，显示详情
+     该方法处理用户点击“浏览市场”表格的事件，获取选中的商品项，并调用 showDetails() 方法显示该商品的详细信息。
      */
     @FXML
     private void handleMarketTableClick() {
@@ -197,7 +222,7 @@ public class UserMainViewController {
     }
 
     /**
-     * 处理我的发布表格点击事件，显示详情
+     当用户点击“我的发布”表格中的某一行时，获取选中的商品（Item）对象，并调用 showDetails() 方法显示该商品的详细信息。
      */
     @FXML
     private void handleMyTableClick() {
@@ -205,8 +230,15 @@ public class UserMainViewController {
         showDetails(selected);
     }
 
-    /**
-     * 在右侧详情栏显示物品信息
+    /** 该方法用于在界面右侧的详情区域显示传入的 Item
+     * 对象的详细信息，包括ID、名称、数量、描述、联系方式、发布者、状态、交易地点以及图片路径
+     * 若 item 为 null，则清空所有详情栏内容
+     具体逻辑如下
+     1参数判断：如果 item == null，则将所有标签文本设为空，图片设为 null
+     2信息展示：否则，调用 item 的各个 getter 方法获取属性值，并设置到对应的 UI 标签中
+     3图片加载
+     4如果 imagePath 不为空，则拼接资源路径并尝试从类路径中读取图片
+     5成功读取则显示图片，失败则设为 null，防止异常中断程序
      */
     private void showDetails(Item item) {
         if (item == null) {
@@ -247,6 +279,11 @@ public class UserMainViewController {
         }
     }
 
+    /** 该方法用于显示一个警告或错误提示框，功能如下：
+     1创建一个新的 Alert 对象，设置类型为 alertType（如警告或错误）；
+     2设置标题为 title，内容文本为 message；
+     3显示并等待用户点击确定按钮。
+     */
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
