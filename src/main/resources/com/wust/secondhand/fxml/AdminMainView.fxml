@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- 管理员界面 -->
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.AdminMainViewController">
+
+    <!-- 左侧区域：包含待审核和已上架列表 -->
+    <left>
+        <VBox prefWidth="350.0" spacing="10.0" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <!-- 待审核列表 -->
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="待审核物品">
+                            <font><Font name="System Bold" size="16.0" /></font>
+                        </Label>
+                        <TableView fx:id="pendingTable" prefHeight="200.0">
+                            <columns>
+                                <TableColumn fx:id="pendingNameCol" prefWidth="200.0" text="物品名称" />
+                                <TableColumn fx:id="pendingOwnerCol" prefWidth="100.0" text="发布者" />
+                            </columns>
+                        </TableView>
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                            <children>
+                                <Button onAction="#handleApprove" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="通过审核" />
+                            </children>
+                            <padding>
+                                <Insets top="5.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+                <!-- 已上架列表 -->
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="已上架物品">
+                            <font><Font name="System Bold" size="16.0" /></font>
+                        </Label>
+                        <TableView fx:id="approvedTable" prefHeight="200.0">
+                            <columns>
+                                <TableColumn fx:id="approvedNameCol" prefWidth="200.0" text="物品名称" />
+                                <TableColumn fx:id="approvedOwnerCol" prefWidth="100.0" text="发布者" />
+                            </columns>
+                        </TableView>
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                            <children>
+                                <Button onAction="#handleDelete" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="删除物品" />
+                            </children>
+                            <padding>
+                                <Insets top="5.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+                <!-- 退出登录按钮 -->
+                <Pane VBox.vgrow="ALWAYS" /> <!-- 一个弹簧，把按钮推到最底部 -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleLogout" text="退出登录" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- 右侧区域：显示物品详情 -->
+    <right>
+        <VBox prefWidth="600.0" spacing="10.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="物品详情预览">
+                            <font><Font name="System Bold" size="18.0" /></font>
+                        </Label>
+                        <Pane HBox.hgrow="ALWAYS" /> <!-- 一个弹簧，把按钮推到最右边 -->
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="15.0" />
+                    </VBox.margin>
+                </HBox>
+                <!-- 使用GridPane来对齐标签和内容 -->
+                <GridPane fx:id="detailsPane" hgap="10.0" vgap="12.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="35.666656494140625" minHeight="10.0" prefHeight="35.666656494140625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="54.333343505859375" minHeight="10.0" prefHeight="36.99997965494791" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="154.33331298828125" minHeight="10.0" prefHeight="38.66664632161459" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="110.33332824707031" minHeight="10.0" prefHeight="76.00002034505206" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="229.33331298828125" minHeight="10.0" prefHeight="221.33331298828125" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <!-- 下面的 Label 都需要 fx:id 以便在控制器中更新它们的内容 -->
+                        <!-- 下面的 Label 都需要 fx:id 以便在控制器中更新它们的内容 -->
+                        <Label style="-fx-font-weight: bold;" text="物品ID:" />
+                        <Label fx:id="idLabel" text="..." GridPane.columnIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="名称:" GridPane.rowIndex="1" />
+                        <Label fx:id="nameLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="数量:" GridPane.rowIndex="2" />
+                        <Label fx:id="quantityLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label style="-fx-font-weight: bold;" text="联系方式:" GridPane.rowIndex="3" />
+                        <Label fx:id="contactLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label style="-fx-font-weight: bold;" text="交易类型：" GridPane.rowIndex="4" />
+                        <Label fx:id="dealLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label style="-fx-font-weight: bold;" text="校区：" GridPane.rowIndex="5" />
+                        <Label fx:id="campusLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <!-- 新增：交易地点 -->
+                        <Label style="-fx-font-weight: bold;" text="交易地点：" GridPane.rowIndex="6" />
+                        <Label fx:id="locationLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <!-- 描述 -->
+                        <Label style="-fx-font-weight: bold;" text="描述:" GridPane.rowIndex="7" />
+                        <TextArea fx:id="descriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label style="-fx-font-weight: bold;" text="图片预览:" GridPane.rowIndex="8" />
+                        <ImageView fx:id="imageView" fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+    </right>
+</BorderPane>
