@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+// 这个类用于处理提交新物品的界面逻辑
 public class SubmitItemController {
     @FXML private TextField nameField, quantityField, locationField, contactField;
     @FXML private TextArea descriptionArea;
@@ -25,6 +26,11 @@ public class SubmitItemController {
 
     private File selectedImageFile;
 
+    /** 该方法实现了选择图片文件的功能：
+     1创建文件选择对话框，设置标题和图片格式过滤器；
+     2显示对话框并获取用户选择的文件；
+     3若选择成功，更新界面显示文件名和图片预览。
+    */
     @FXML
     public void initialize() {
         // 可选：确保默认值已设置，如果 FXML 中未处理
@@ -51,6 +57,14 @@ public class SubmitItemController {
         }
     }
 
+    /** 该方法处理提交按钮的点击事件：
+     1检查表单中名称、数量、位置、联系方式是否为空，若为空则弹出错误提示。
+     2尝试将数量字段转换为整数，若失败则提示“数量必须是一个有效的数字”。
+     3调用 copyImageToStorage() 方法将选中的图片复制到用户专属文件夹，并获取保存路径。
+     4使用表单数据和当前用户名创建一个新的 Item 对象。
+     5将新商品添加到数据管理器中。
+     6关闭当前窗口。
+    */
     @FXML
     private void handleSubmit() {
         if (nameField.getText().isBlank() || quantityField.getText().isBlank() ||
@@ -69,7 +83,6 @@ public class SubmitItemController {
         String dealType = dealChoiceBox.getValue();
         String campus = campusChoiceBox.getValue();
 
-        // 调用我们修改后的 copyImageToStorage 方法
         String imagePath = copyImageToStorage(selectedImageFile);
 
         Item newItem = new Item(
@@ -89,11 +102,15 @@ public class SubmitItemController {
         ((Stage) nameField.getScene().getWindow()).close();
     }
 
-    /**
-     * 【核心修改】将图片复制到以当前用户名命名的专属文件夹中。
-     * @param imageFile 用户选择的图片文件
-     * @return 保存到JSON中的相对路径，例如 "images/abc/12345.jpg"
-     */
+    /** 该方法将选中的图片复制到用户专属的存储文件夹中：
+     1获取当前用户名；
+     2构建以用户名为基础的目标文件夹路径；
+     3确保这个文件夹存在，如果不存在，则创建它（包括父目录）；
+     4构建新的文件名和最终的目标路径；
+     5复制文件到目标路径；
+     6返回包含了用户名文件夹的相对路径。
+     如果在复制过程中发生任何错误，仍然返回默认图片路径。
+    */
     private String copyImageToStorage(File imageFile) {
         if (imageFile == null) {
             return "";
@@ -126,6 +143,11 @@ public class SubmitItemController {
         }
     }
 
+    /** 该方法用于显示错误提示框：
+     1创建一个新的 Alert 对象，设置类型为 ERROR；
+     2设置标题、头部文本和内容文本；
+     3显示并等待用户关闭提示框。
+    */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

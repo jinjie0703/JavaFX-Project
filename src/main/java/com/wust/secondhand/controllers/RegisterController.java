@@ -22,6 +22,12 @@ public class RegisterController {
 
     private final DataManager dataManager = DataManager.getInstance();
 
+    // 这个方法用于处理注册按钮的点击事件
+    // 1获取用户输入的用户名和密码；
+    // 2校验输入是否为空，密码是否一致；
+    // 3调用 dataManager.userExists(username) 检查用户名是否已存在；
+    // 4若全部校验通过，调用 dataManager.addUser(...) 添加新用户；
+    // 5最终显示注册成功信息，并设置文字颜色为绿色。
     @FXML
     private void handleRegister() {
         String username = usernameField.getText();
@@ -46,9 +52,5 @@ public class RegisterController {
         dataManager.addUser(new User(username, password, UserRole.USER));
         messageLabel.setStyle("-fx-text-fill: green;");
         messageLabel.setText("注册成功！");
-
-        // 注册成功后可以考虑关闭窗口
-        // Stage stage = (Stage) messageLabel.getScene().getWindow();
-        // stage.close();
     }
 }
