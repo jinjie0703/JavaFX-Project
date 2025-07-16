@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -106,17 +107,18 @@ public class AdminMainViewController {
         dealLabel.setText(item.getTradeType() != null ? item.getTradeType() : "出售");
         campusLabel.setText(item.getCampus() != null ? item.getCampus() : "黄家湖校区");
         try {
-            String resourcePath = "/com/wust/secondhand/" + item.getImagePath();
-            java.io.InputStream stream = getClass().getResourceAsStream(resourcePath);
-            if (stream != null) {
-                imageView.setImage(new Image(stream));
+            System.out.println("图片路径: " + item.getImagePath()); // 调试日志
+            String absolutePath = "src/main/resources/com/wust/secondhand/" + item.getImagePath();
+            File imageFile = new File(absolutePath);
+            if (imageFile.exists()) {
+                imageView.setImage(new Image(imageFile.toURI().toString()));
             } else {
+                System.err.println("图片文件未找到: " + absolutePath);
                 imageView.setImage(null);
-                System.err.println("图片资源未找到: " + resourcePath);
             }
         } catch (Exception e) {
+            System.err.println("加载图片时出错: " + e.getMessage());
             imageView.setImage(null);
-            e.printStackTrace();
         }
     }
 

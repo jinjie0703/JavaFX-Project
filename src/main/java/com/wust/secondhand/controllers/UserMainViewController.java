@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public class UserMainViewController {
 
@@ -54,7 +55,9 @@ public class UserMainViewController {
 
     private final DataManager dataManager = DataManager.getInstance();
     private String currentUsername;
-    private FilteredList<Item> filteredMarketItems; // 用于搜索的过滤列表
+
+    // 日志记录器
+    private static final Logger logger = Logger.getLogger(UserMainViewController.class.getName());
 
     /** 方法用于初始化用户主界面，其功能如下：
      1获取当前登录用户名并显示欢迎信息；
@@ -91,7 +94,7 @@ public class UserMainViewController {
         marketCampusCol.setCellValueFactory(new PropertyValueFactory<>("campus"));
 
         // 创建一个只包含“已上架”物品的过滤列表
-        filteredMarketItems = new FilteredList<>(dataManager.getItems(), p -> p.getStatus() == ItemStatus.APPROVED);
+        FilteredList<Item> filteredMarketItems = new FilteredList<>(dataManager.getItems(), p -> p.getStatus() == ItemStatus.APPROVED);
         marketItemsTable.setItems(filteredMarketItems);
     }
 
@@ -196,7 +199,7 @@ public class UserMainViewController {
             stage.setScene(scene);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe("Error occurred: " + e.getMessage());
         }
     }
 
@@ -216,7 +219,7 @@ public class UserMainViewController {
             // 调用 Main 类中的静态方法，重新显示登录窗口
             com.wust.secondhand.Main.showLoginView();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe("Error occurred: " + e.getMessage());
             showAlert(Alert.AlertType.ERROR, "错误", "返回登录页面时发生错误！");
         }
     }
@@ -313,19 +316,64 @@ public class UserMainViewController {
         showDetails(selected);
     }
 
+    /** 该方法用于在界面右侧的详情区域显示传入的 Item
+     * 对象的详细信息，包括ID、名称、数量、描述、联系方式、发布者、状态、交易地点以及图片路径
+     * 若 item 为 null，则清空所有详情栏内容
+     具体逻辑如下
+     1参数判断：如果 item == null，则将所有标签文本设为空，图片设为 null
+     2信息展示：否则，调用 item 的各个 getter 方法获取属性值，并设置到对应的 UI 标签中
+     3图片加载
+     4如果 imagePath 不为空，则拼接资源路径并尝试从类路径中读取图片
+     5成功读取则显示图片，失败则设为 null，防止异常中断程序
+     */
     private void showDetails(Item item) {
         if (item == null) {
+            detailsIdLabel.setText("ID: ");
             detailsNameLabel.setText("名称: ");
+            detailsQuantityLabel.setText("数量: ");
             detailsDescLabel.setText("描述: ");
             detailsContactLabel.setText("联系方式: ");
             detailsOwnerLabel.setText("发布者: ");
             detailsStatusLabel.setText("状态: ");
+            detailsLocationLabel.setText("交易地点: ");
+            detailsImageView.setImage(null);
             return;
         }
+        detailsIdLabel.setText("ID: " + item.getId());
         detailsNameLabel.setText("名称: " + item.getName());
+        detailsQuantityLabel.setText("数量: " + item.getQuantity());
         detailsDescLabel.setText("描述: " + item.getDescription());
         detailsContactLabel.setText("联系方式: " + item.getContact());
         detailsOwnerLabel.setText("发布者: " + item.getOwner());
         detailsStatusLabel.setText("状态: " + item.getStatus().toString());
+        detailsLocationLabel.setText("交易地点: " + item.getTradeLocation());
+        // 图片显示逻辑
+        if (item.getImagePath() != null && !item.getImagePath().isEmpty()) {
+            String resourcePath = "/com/wust/secondhand/" + item.getImagePath();
+            try (java.io.InputStream stream = getClass().getResourceAsStream(resourcePath)) {
+                if (stream != null) {
+                    detailsImageView.setImage(new javafx.scene.image.Image(stream));
+                } else {
+                    detailsImageView.setImage(null);
+                }
+            } catch (Exception e) {
+                detailsImageView.setImage(null);
+            }
+        } else {
+            detailsImageView.setImage(null);
+        }
+    }
+
+    /** 该方法用于显示一个警告或错误提示框，功能如下：
+     1创建一个新的 Alert 对象，设置类型为 alertType（如警告或错误）；
+     2设置标题为 title，内容文本为 message；
+     3显示并等待用户点击确定按钮。
+     */
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
