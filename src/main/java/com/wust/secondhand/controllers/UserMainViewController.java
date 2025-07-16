@@ -12,9 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-
 
 import java.io.IOException;
 import java.util.Optional;
@@ -145,65 +142,12 @@ public class UserMainViewController {
                         item.getDescription().toLowerCase().contains(keyword)
         ));
     }
-    @FXML
-    private void handleFilter() {
-        // 创建筛选对话框
-        Dialog<Void> dialog = new Dialog<>();
-        dialog.setTitle("筛选商品");
-        dialog.setHeaderText("请选择筛选条件");
-
-        ButtonType filterButtonType = new ButtonType("筛选", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(filterButtonType, ButtonType.CANCEL);
-
-        // 下拉框 - 校区
-        ComboBox<String> campusBox = new ComboBox<>();
-        campusBox.getItems().addAll("全部", "黄家湖校区", "青山校区");
-        campusBox.setValue("全部");
-
-        // 下拉框 - 交易类型
-        ComboBox<String> tradeTypeBox = new ComboBox<>();
-        tradeTypeBox.getItems().addAll("全部", "出租", "出售");
-        tradeTypeBox.setValue("全部");
-
-        // 布局
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
-
-        grid.add(new Label("校区:"), 0, 0);
-        grid.add(campusBox, 1, 0);
-        grid.add(new Label("交易类型:"), 0, 1);
-        grid.add(tradeTypeBox, 1, 1);
-
-        dialog.getDialogPane().setContent(grid);
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == filterButtonType) {
-                String selectedCampus = campusBox.getValue();
-                String selectedTradeType = tradeTypeBox.getValue();
-
-                FilteredList<Item> filtered = new FilteredList<>(dataManager.getItems(), item -> {
-                    boolean approved = item.getStatus() == ItemStatus.APPROVED;
-                    boolean campusMatch = selectedCampus.equals("全部") || (item.getCampus() != null && item.getCampus().equals(selectedCampus));
-                    boolean tradeMatch = selectedTradeType.equals("全部") || (item.getTradeType() != null && item.getTradeType().equals(selectedTradeType));
-                    return approved && campusMatch && tradeMatch;
-                });
-
-                marketItemsTable.setItems(filtered);
-            }
-            return null;
-        });
-
-        dialog.showAndWait();
-    }
-
 
     /** 该方法用于清空搜索框并重置两个表格视图的数据：
      1 searchField.clear();：清空搜索输入框的内容；
      2 marketItemsTable.setItems(dataManager.getApprovedItems());：将“浏览市场”表格的数据设置为所有已批准的商品；
      3 myItemsTable.setItems(dataManager.getItemsByUser(currentUsername));：将“我的发布”表格的数据设置为当前用户发布的商品。
      */
-
     @FXML
     private void handleClearSearch() {
         searchField.clear();
@@ -266,7 +210,6 @@ public class UserMainViewController {
      2调用 Main.showLoginView() 重新显示登录窗口；
      3如果跳转过程中发生异常，捕获并弹出错误提示框。
      */
-
     @FXML
     private void handleLogout() {
         try {

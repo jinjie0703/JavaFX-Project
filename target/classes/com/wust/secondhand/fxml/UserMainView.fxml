@@ -1,63 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <!-- 用户操作界面 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.UserMainViewController" styleClass="root-container">
-
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.UserMainViewController">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
                 <!-- 欢迎语和发布按钮 -->
-                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="welcome-bar" VBox.vgrow="NEVER">
+                <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
                     <children>
                         <Label fx:id="welcomeLabel">
                             <font><Font size="14.0" /></font>
                         </Label>
                         <Pane HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleSubmitNewItem" styleClass="publish-button" text="发布我的二手物品" />
+                        <Button mnemonicParsing="false" onAction="#handleSubmitNewItem" text="发布我的二手物品" />
                         <!-- 退出登录按钮 -->
-                        <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="logout-button" text="退出登录" />
+                        <Button mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: #6c757d;" text="退出登录" textFill="WHITE" />
                     </children>
                 </HBox>
                 <!-- 搜索栏 -->
-                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="search-bar">
+                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-padding: 8px 10px;">
                     <children>
                         <Label text="搜索市场:" />
-                        <TextField fx:id="searchField" promptText="输入物品名称、描述或联系方式中的关键字..." styleClass="search-field" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleSearch" styleClass="search-button" text="搜索" />
-                        <Button mnemonicParsing="false" onAction="#handleClearSearch" styleClass="clear-button" text="清空" />
-                        <!-- 新增筛选按钮 -->
-                        <Button mnemonicParsing="false" onAction="#handleFilter" styleClass="filter-button" text="筛选" />
+                        <TextField fx:id="searchField" promptText="输入物品名称、描述或联系方式中的关键字..." HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
+                        <Button mnemonicParsing="false" onAction="#handleClearSearch" text="清空" />
                     </children>
                 </HBox>
             </children>
         </VBox>
     </top>
     <center>
-        <HBox spacing="0.0" BorderPane.alignment="CENTER">
+        <HBox spacing="10.0" BorderPane.alignment="CENTER">
             <children>
                 <!-- 左侧TabPane -->
-                <TabPane fx:id="mainTabPane" prefWidth="500.0" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
+                <TabPane fx:id="mainTabPane" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                         <!-- 第一个标签页：浏览所有商品 -->
-                        <Tab styleClass="tab-item" text="浏览市场">
+                        <Tab text="浏览市场">
                             <content>
-                                <TableView fx:id="marketItemsTable" styleClass="market-table">
+                                <TableView fx:id="marketItemsTable">
                                     <columns>
                                         <TableColumn fx:id="marketNameCol" prefWidth="150.0" text="名称" />
                                         <TableColumn fx:id="marketDescCol" prefWidth="350.0" text="描述" />
@@ -70,11 +61,12 @@
                             </content>
                         </Tab>
                         <!-- 第二个标签页：管理我的发布 -->
-                        <Tab styleClass="tab-item" text="我的发布">
+                        <Tab text="我的发布">
                             <content>
-                                <VBox spacing="10.0" styleClass="my-posts-container">
+                                <VBox spacing="10.0">
+                                    <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
                                     <children>
-                                        <TableView fx:id="myItemsTable" styleClass="my-items-table" VBox.vgrow="ALWAYS">
+                                        <TableView fx:id="myItemsTable" VBox.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="myNameCol" prefWidth="150.0" text="名称" />
                                                 <TableColumn fx:id="myStatusCol" prefWidth="100.0" text="状态" />
@@ -83,9 +75,9 @@
                                                 <TableColumn fx:id="myCampusCol" prefWidth="120.0" text="校区" />
                                             </columns>
                                         </TableView>
-                                        <HBox alignment="CENTER_RIGHT" styleClass="delete-button-container">
+                                        <HBox alignment="CENTER_RIGHT">
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" styleClass="delete-button" text="删除选中项 (交易完成)" />
+                                                <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" style="-fx-background-color: #d9534f;" text="删除选中项 (交易完成)" textFill="WHITE" />
                                             </children>
                                         </HBox>
                                     </children>
@@ -95,28 +87,24 @@
                     </tabs>
                 </TabPane>
                 <!-- 右侧详情栏 -->
-                <VBox fx:id="detailsPane" maxWidth="488.0" minWidth="220.0" prefHeight="617.0" prefWidth="488.0" spacing="10.0" styleClass="details-pane">
+                <VBox fx:id="detailsPane" maxWidth="488.0" minWidth="220.0" prefHeight="617.0" prefWidth="488.0" spacing="10.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1;">
+                    <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0" /></padding>
                     <children>
-                        <Label styleClass="details-title" text="物品详情" />
-                        <Label fx:id="detailsIdLabel" styleClass="details-label" text="ID: " />
-                        <Label fx:id="detailsNameLabel" styleClass="details-label" text="名称: " />
-                        <Label fx:id="detailsQuantityLabel" styleClass="details-label" text="数量: " />
-                        <Label fx:id="detailsDescLabel" styleClass="details-label" text="描述: " wrapText="true" />
-                        <Label fx:id="detailsContactLabel" styleClass="details-label" text="联系方式: " />
-                        <Label fx:id="detailsOwnerLabel" styleClass="details-label" text="发布者: " />
-                        <Label fx:id="detailsStatusLabel" styleClass="details-label" text="状态: " />
-                        <Label fx:id="detailsLocationLabel" styleClass="details-label" text="交易地点: " />
-                        <Label fx:id="detailsTradeTypeLabel" styleClass="details-label" text="交易类型: " />
-                        <Label fx:id="detailsCampusLabel" styleClass="details-label" text="校区: " />
-                        <ImageView fx:id="detailsImageView" fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="details-image" />
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="物品详情" />
+                        <Label fx:id="detailsIdLabel" text="ID: " />
+                        <Label fx:id="detailsNameLabel" text="名称: " />
+                        <Label fx:id="detailsQuantityLabel" text="数量: " />
+                        <Label fx:id="detailsDescLabel" text="描述: " wrapText="true" />
+                        <Label fx:id="detailsContactLabel" text="联系方式: " />
+                        <Label fx:id="detailsOwnerLabel" text="发布者: " />
+                        <Label fx:id="detailsStatusLabel" text="状态: " />
+                        <Label fx:id="detailsLocationLabel" text="交易地点: " />
+                        <Label fx:id="detailsTradeTypeLabel" text="交易类型: " />
+                        <Label fx:id="detailsCampusLabel" text="校区: " />
+                        <ImageView fx:id="detailsImageView" fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                 </VBox>
             </children>
         </HBox>
     </center>
-   <stylesheets>
-      <URL value="@../css/views/UserMain.css" />
-      <URL value="@../css/components/buttons.css" />
-       <URL value="@../css/base.css" />
-   </stylesheets>
 </BorderPane>
