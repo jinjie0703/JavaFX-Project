@@ -11,16 +11,14 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.Pane?>
 
 <!-- 管理员界面 -->
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="1000.0"
-            fx:controller="com.wust.secondhand.controllers.AdminMainViewController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wust.secondhand.controllers.AdminMainViewController">
 
     <!-- 左侧区域：包含待审核和已上架列表 -->
     <left>
@@ -113,24 +111,32 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="35.666656494140625" minHeight="10.0" prefHeight="35.666656494140625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="54.333343505859375" minHeight="10.0" prefHeight="36.99997965494791" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="154.33331298828125" minHeight="10.0" prefHeight="38.66664632161459" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="110.33332824707031" minHeight="10.0" prefHeight="76.00002034505206" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="229.33331298828125" minHeight="10.0" prefHeight="221.33331298828125" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <!-- 下面的 Label 都需要 fx:id 以便在控制器中更新它们的内容 -->
-                        <Label text="物品ID:" style="-fx-font-weight: bold;" />
+                        <!-- 下面的 Label 都需要 fx:id 以便在控制器中更新它们的内容 -->
+                        <Label style="-fx-font-weight: bold;" text="物品ID:" />
                         <Label fx:id="idLabel" text="..." GridPane.columnIndex="1" />
-                        <Label text="名称:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" />
+                        <Label style="-fx-font-weight: bold;" text="名称:" GridPane.rowIndex="1" />
                         <Label fx:id="nameLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="数量:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" />
+                        <Label style="-fx-font-weight: bold;" text="数量:" GridPane.rowIndex="2" />
                         <Label fx:id="quantityLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="联系方式:" style="-fx-font-weight: bold;" GridPane.rowIndex="3" />
+                        <Label style="-fx-font-weight: bold;" text="联系方式:" GridPane.rowIndex="3" />
                         <Label fx:id="contactLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="描述:" style="-fx-font-weight: bold;" GridPane.rowIndex="4" />
-                        <TextArea fx:id="descriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label text="图片预览:" style="-fx-font-weight: bold;" GridPane.rowIndex="5" />
-                        <ImageView fx:id="imageView" fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label style="-fx-font-weight: bold;" text="描述:" GridPane.rowIndex="6" />
+                        <TextArea fx:id="descriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label style="-fx-font-weight: bold;" text="图片预览:" GridPane.rowIndex="7" />
+                        <ImageView fx:id="imageView" fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label style="-fx-font-weight: bold;" text="交易类型：" GridPane.rowIndex="4" />
+                        <Label style="-fx-font-weight: bold;" text="校区：" GridPane.rowIndex="5" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="dealLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="campusLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     </children>
                 </GridPane>
             </children>

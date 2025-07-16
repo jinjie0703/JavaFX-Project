@@ -16,6 +16,8 @@ public class Item {
     private String contact;
     private String owner;
     private ItemStatus status; // 保留一个普通的status字段，专门用于JSON存取
+    private String tradeType; // 新增字段：交易类型
+    private String campus;
 
     // --- 这个字段用 transient 关键字告诉Gson忽略它 ---
     private transient ObjectProperty<ItemStatus> statusProperty;
@@ -25,7 +27,7 @@ public class Item {
      */
     public Item() {}
 
-    public Item(String name, int quantity, String description, String imagePath, String tradeLocation, String contact, String owner) {
+    public Item(String name, int quantity, String description, String imagePath, String tradeLocation, String contact, String owner, String tradeType, String campus) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.quantity = quantity;
@@ -35,6 +37,8 @@ public class Item {
         this.contact = contact;
         this.owner = owner;
         this.status = ItemStatus.PENDING; // 初始化普通的status字段
+        this.tradeType = tradeType; // 新增
+        this.campus = campus;
         // 注意：这里我们不再初始化 statusProperty
     }
 
@@ -78,4 +82,8 @@ public class Item {
     public String getTradeLocation() { return tradeLocation; }
     public String getContact() { return contact; }
     public String getOwner() { return owner; }
+    public String getTradeType() { return tradeType; }
+    public void setTradeType(String tradeType) { this.tradeType = tradeType; }
+    public String getCampus() {return campus;}
+    public void setCampus(String campus) {this.campus = campus;}
 }

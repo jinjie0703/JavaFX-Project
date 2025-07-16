@@ -26,6 +26,17 @@ public class SubmitItemController {
     private File selectedImageFile;
 
     @FXML
+    public void initialize() {
+        // 可选：确保默认值已设置，如果 FXML 中未处理
+        // 例如，如果你希望“出售”和“黄家湖校区”在加载时被明确设置：
+        // if (dealChoiceBox.getValue() == null) {
+        //     dealChoiceBox.setValue("出售");
+        // }
+        // if (campusChoiceBox.getValue() == null) {
+        //     campusChoiceBox.setValue("黄家湖校区");
+        // }
+    }
+    @FXML
     private void handleChooseImage() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("选择物品图片");
@@ -68,7 +79,9 @@ public class SubmitItemController {
                 imagePath,
                 locationField.getText(),
                 contactField.getText(),
-                DataManager.getInstance().getCurrentUser().getUsername()
+                DataManager.getInstance().getCurrentUser().getUsername(),
+                dealType,
+                campus
         );
 
         DataManager.getInstance().addItem(newItem);

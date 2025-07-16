@@ -28,6 +28,8 @@ public class AdminMainViewController {
     @FXML private Label idLabel, nameLabel, quantityLabel, contactLabel;
     @FXML private TextArea descriptionArea;
     @FXML private ImageView imageView;
+    @FXML private Label dealLabel;
+    @FXML private Label campusLabel;
 
     private final DataManager dataManager = DataManager.getInstance();
 
@@ -85,6 +87,8 @@ public class AdminMainViewController {
         quantityLabel.setText(String.valueOf(item.getQuantity()));
         contactLabel.setText(item.getContact());
         descriptionArea.setText(item.getDescription());
+        dealLabel.setText(item.getTradeType() != null ? item.getTradeType() : "出售");
+        campusLabel.setText(item.getCampus() != null ? item.getCampus() : "黄家湖校区");
         try {
             String resourcePath = "/com/wust/secondhand/" + item.getImagePath();
             java.io.InputStream stream = getClass().getResourceAsStream(resourcePath);
@@ -147,6 +151,8 @@ public class AdminMainViewController {
         contactLabel.setText("...");
         descriptionArea.clear();
         imageView.setImage(null);
+        dealLabel.setText("..."); // 清空交易类型
+        campusLabel.setText("..."); // 清空校区
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
