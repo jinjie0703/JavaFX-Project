@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -45,6 +46,11 @@ public class UserMainViewController {
     @FXML private Label detailsContactLabel;
     @FXML private Label detailsOwnerLabel;
     @FXML private Label detailsStatusLabel;
+    // 新增属性
+    @FXML private Label detailsIdLabel;
+    @FXML private Label detailsQuantityLabel;
+    @FXML private Label detailsLocationLabel;
+    @FXML private ImageView detailsImageView;
 
     private final DataManager dataManager = DataManager.getInstance();
     private String currentUsername;
@@ -62,9 +68,9 @@ public class UserMainViewController {
         // 3. 配置“我的发布”的表格
         setupMyItemsTable();
 
-        // 4. 为两个表格都添加双击查看详情的功能
-        addDoubleClickDetailsListener(marketItemsTable);
-        addDoubleClickDetailsListener(myItemsTable);
+        // 4. 为两个表格都添加选中项变化监听器，自动更新右侧详情栏
+        marketItemsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> showDetails(newVal));
+        myItemsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> showDetails(newVal));
     }
 
     /**
@@ -190,29 +196,63 @@ public class UserMainViewController {
         }
     }
 
-    private void addDoubleClickDetailsListener(TableView<Item> table) {
-        table.setRowFactory(tv -> {
-            TableRow<Item> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    showItemDetails(row.getItem());
-                }
-            });
-            return row;
-        });
+    /**
+     * 处理市场表格点击事件，显示详情
+     */
+    @FXML
+    private void handleMarketTableClick() {
+        Item selected = marketItemsTable.getSelectionModel().getSelectedItem();
+        showDetails(selected);
     }
 
-    private void showItemDetails(Item item) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("物品详情");
-        alert.setHeaderText(item.getName() + " (由 " + item.getOwner() + " 发布)");
-        String content = "描述: " + item.getDescription() + "\n" +
-                "数量: " + item.getQuantity() + "\n" +
-                "交易地点: " + item.getTradeLocation() + "\n" +
-                "联系方式: " + item.getContact() + "\n" +
-                "图片路径: " + item.getImagePath();
-        alert.setContentText(content);
-        alert.showAndWait();
+    /**
+     * 处理我的发布表格点击事件，显示详情
+     */
+    @FXML
+    private void handleMyTableClick() {
+        Item selected = myItemsTable.getSelectionModel().getSelectedItem();
+        showDetails(selected);
+    }
+
+    /**
+     * 在右侧详情栏显示物品信息
+     */
+    private void showDetails(Item item) {
+        if (item == null) {
+            detailsIdLabel.setText("ID: ");
+            detailsNameLabel.setText("名称: ");
+            detailsQuantityLabel.setText("数量: ");
+            detailsDescLabel.setText("描述: ");
+            detailsContactLabel.setText("联系方式: ");
+            detailsOwnerLabel.setText("发布者: ");
+            detailsStatusLabel.setText("状态: ");
+            detailsLocationLabel.setText("交易地点: ");
+            detailsImageView.setImage(null);
+            return;
+        }
+        detailsIdLabel.setText("ID: " + item.getId());
+        detailsNameLabel.setText("名称: " + item.getName());
+        detailsQuantityLabel.setText("数量: " + item.getQuantity());
+        detailsDescLabel.setText("描述: " + item.getDescription());
+        detailsContactLabel.setText("联系方式: " + item.getContact());
+        detailsOwnerLabel.setText("发布者: " + item.getOwner());
+        detailsStatusLabel.setText("状态: " + item.getStatus().toString());
+        detailsLocationLabel.setText("交易地点: " + item.getTradeLocation());
+        // 图片显示逻辑
+        if (item.getImagePath() != null && !item.getImagePath().isEmpty()) {
+            String resourcePath = "/com/wust/secondhand/" + item.getImagePath();
+            try (java.io.InputStream stream = getClass().getResourceAsStream(resourcePath)) {
+                if (stream != null) {
+                    detailsImageView.setImage(new javafx.scene.image.Image(stream));
+                } else {
+                    detailsImageView.setImage(null);
+                }
+            } catch (Exception e) {
+                detailsImageView.setImage(null);
+            }
+        } else {
+            detailsImageView.setImage(null);
+        }
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -222,6 +262,7 @@ public class UserMainViewController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+}
 
     @FXML
     private void handleMarketTableClick() {
@@ -251,4 +292,3 @@ public class UserMainViewController {
         detailsStatusLabel.setText("状态: " + item.getStatus().toString());
     }
 }
-
