@@ -27,12 +27,17 @@ public class UserMainViewController {
     @FXML private TableColumn<Item, String> marketDescCol;
     @FXML private TableColumn<Item, String> marketContactCol;
     @FXML private TableColumn<Item, String> marketOwnerCol;
+    @FXML private TableColumn<Item, String> marketDelCol;
+    @FXML private TableColumn<Item, String> marketCampusCol;
 
     // --- “我的发布” Tab 组件 ---
     @FXML private TableView<Item> myItemsTable;
     @FXML private TableColumn<Item, String> myNameCol;
     @FXML private TableColumn<Item, ItemStatus> myStatusCol;
     @FXML private TableColumn<Item, String> myDescCol;
+    @FXML private TableColumn<Item, String> myDealCol;
+    @FXML private TableColumn<Item, String> myCampusCol;
+
 
     // --- 详情区域组件 ---
     @FXML private Label detailsNameLabel;
@@ -70,6 +75,8 @@ public class UserMainViewController {
         marketDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         marketContactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
         marketOwnerCol.setCellValueFactory(new PropertyValueFactory<>("owner"));
+        marketDelCol.setCellValueFactory(new PropertyValueFactory<>("tradeType"));
+        marketCampusCol.setCellValueFactory(new PropertyValueFactory<>("campus"));
 
         // 创建一个只包含“已上架”物品的过滤列表
         filteredMarketItems = new FilteredList<>(dataManager.getItems(), p -> p.getStatus() == ItemStatus.APPROVED);
@@ -83,6 +90,8 @@ public class UserMainViewController {
         myNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         myStatusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
         myDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        myDealCol.setCellValueFactory(new PropertyValueFactory<>("tradeType"));
+        myCampusCol.setCellValueFactory(new PropertyValueFactory<>("campus"));
 
         // 创建一个只包含当前用户发布的物品的过滤列表
         FilteredList<Item> myItems = new FilteredList<>(dataManager.getItems(), p -> p.getOwner().equals(currentUsername));
