@@ -14,6 +14,11 @@ public class Main extends Application {
 
     private static Stage primaryStage;
 
+    /**
+     * 应用程序入口点，初始化数据目录并显示登录界面。
+     * @param stage 主舞台
+     * @throws IOException 如果加载FXML文件失败
+     */
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
@@ -23,11 +28,19 @@ public class Main extends Application {
         showLoginView();
     }
 
+    /**
+     * 应用程序停止时保存数据。
+     * 这里调用 DataManager 的 saveItems 方法来保存物品数据。
+     */
     @Override
     public void stop() {
         DataManager.getInstance().saveItems();
     }
 
+    /**
+     * 显示登录界面。
+     * @throws IOException 如果加载FXML文件失败
+     */
     public static void showLoginView() throws IOException {
         Scene scene = FxmlManager.load("fxml/LoginView.fxml", 380, 280);
         primaryStage.setTitle("登录 - 武科大二手交易");
@@ -35,18 +48,29 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * 显示注册界面。
+     * @throws IOException 如果加载FXML文件失败
+     */
     public static void showAdminView() throws IOException {
         Scene scene = FxmlManager.load("fxml/AdminMainView.fxml", 1000, 600);
         primaryStage.setTitle("管理员后台");
         primaryStage.setScene(scene);
     }
 
+    /**
+     * 显示用户主界面。
+     * @throws IOException 如果加载FXML文件失败
+     */
     public static void showUserView() throws IOException {
         Scene scene = FxmlManager.load("fxml/UserMainView.fxml", 1000, 600);
         primaryStage.setTitle("武科大二手市场");
         primaryStage.setScene(scene);
     }
 
+    /**
+     程序的入口点。
+     */
     public static void main(String[] args) {
         launch(args);
     }
