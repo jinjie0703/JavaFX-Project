@@ -54,6 +54,8 @@
                                         <TableColumn fx:id="marketDescCol" prefWidth="350.0" text="描述" />
                                         <TableColumn fx:id="marketContactCol" prefWidth="120.0" text="联系方式" />
                                         <TableColumn fx:id="marketOwnerCol" prefWidth="120.0" text="发布者" />
+                                        <TableColumn fx:id="marketDelCol" prefWidth="120.0" text="交易方式" />
+                                        <TableColumn fx:id="marketCampusCol" prefWidth="120.0" text="校区" />
                                     </columns>
                                 </TableView>
                             </content>
@@ -69,6 +71,8 @@
                                                 <TableColumn fx:id="myNameCol" prefWidth="150.0" text="名称" />
                                                 <TableColumn fx:id="myStatusCol" prefWidth="100.0" text="状态" />
                                                 <TableColumn fx:id="myDescCol" prefWidth="400.0" text="描述" />
+                                                <TableColumn fx:id="myDealCol" prefWidth="120.0" text="交易方式" />
+                                                <TableColumn fx:id="myCampusCol" prefWidth="120.0" text="校区" />
                                             </columns>
                                         </TableView>
                                         <HBox alignment="CENTER_RIGHT">

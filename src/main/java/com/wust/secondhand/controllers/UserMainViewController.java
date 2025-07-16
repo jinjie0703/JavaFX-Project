@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public class UserMainViewController {
 
@@ -54,7 +55,9 @@ public class UserMainViewController {
 
     private final DataManager dataManager = DataManager.getInstance();
     private String currentUsername;
-    private FilteredList<Item> filteredMarketItems; // 用于搜索的过滤列表
+
+    // 日志记录器
+    private static final Logger logger = Logger.getLogger(UserMainViewController.class.getName());
 
     /** 方法用于初始化用户主界面，其功能如下：
      1获取当前登录用户名并显示欢迎信息；
@@ -91,7 +94,7 @@ public class UserMainViewController {
         marketCampusCol.setCellValueFactory(new PropertyValueFactory<>("campus"));
 
         // 创建一个只包含“已上架”物品的过滤列表
-        filteredMarketItems = new FilteredList<>(dataManager.getItems(), p -> p.getStatus() == ItemStatus.APPROVED);
+        FilteredList<Item> filteredMarketItems = new FilteredList<>(dataManager.getItems(), p -> p.getStatus() == ItemStatus.APPROVED);
         marketItemsTable.setItems(filteredMarketItems);
     }
 
@@ -196,7 +199,7 @@ public class UserMainViewController {
             stage.setScene(scene);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe("Error occurred: " + e.getMessage());
         }
     }
 
@@ -216,28 +219,11 @@ public class UserMainViewController {
             // 调用 Main 类中的静态方法，重新显示登录窗口
             com.wust.secondhand.Main.showLoginView();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe("Error occurred: " + e.getMessage());
             showAlert(Alert.AlertType.ERROR, "错误", "返回登录页面时发生错误！");
         }
     }
 
-    /**
-     该方法处理用户点击“浏览市场”表格的事件，获取选中的商品项，并调用 showDetails() 方法显示该商品的详细信息。
-     */
-    @FXML
-    private void handleMarketTableClick() {
-        Item selected = marketItemsTable.getSelectionModel().getSelectedItem();
-        showDetails(selected);
-    }
-
-    /**
-     当用户点击“我的发布”表格中的某一行时，获取选中的商品（Item）对象，并调用 showDetails() 方法显示该商品的详细信息。
-     */
-    @FXML
-    private void handleMyTableClick() {
-        Item selected = myItemsTable.getSelectionModel().getSelectedItem();
-        showDetails(selected);
-    }
 
     /** 该方法用于在界面右侧的详情区域显示传入的 Item
      * 对象的详细信息，包括ID、名称、数量、描述、联系方式、发布者、状态、交易地点以及图片路径

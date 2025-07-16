@@ -14,17 +14,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.logging.Logger;
 
 // 这个类用于处理提交新物品的界面逻辑
 public class SubmitItemController {
     @FXML private TextField nameField, quantityField, locationField, contactField;
     @FXML private TextArea descriptionArea;
-    @FXML private Label imagePathLabel;
-    @FXML private ImageView imageView;
-    @FXML private ChoiceBox<String> dealChoiceBox;
+    @FXML private ImageView imagePreview;
+    @FXML private ChoiceBox<String> tradeTypeChoiceBox;
     @FXML private ChoiceBox<String> campusChoiceBox;
 
     private File selectedImageFile;
+    private static final Logger logger = Logger.getLogger(SubmitItemController.class.getName());
 
     /** 该方法实现了选择图片文件的功能：
      1创建文件选择对话框，设置标题和图片格式过滤器；
@@ -51,9 +52,8 @@ public class SubmitItemController {
         selectedImageFile = fileChooser.showOpenDialog(nameField.getScene().getWindow());
 
         if (selectedImageFile != null) {
-            imagePathLabel.setText(selectedImageFile.getName());
             Image image = new Image(selectedImageFile.toURI().toString());
-            imageView.setImage(image);
+            imagePreview.setImage(image);
         }
     }
 
@@ -69,7 +69,7 @@ public class SubmitItemController {
     private void handleSubmit() {
         if (nameField.getText().isBlank() || quantityField.getText().isBlank() ||
                 locationField.getText().isBlank() || contactField.getText().isBlank()) {
-            showAlert("错误", "所有字段均为必填项！");
+            showAlert("所有字段均为必填项！");
             return;
         }
 
@@ -77,10 +77,10 @@ public class SubmitItemController {
         try {
             quantity = Integer.parseInt(quantityField.getText());
         } catch (NumberFormatException e) {
-            showAlert("错误", "数量必须是一个有效的数字！");
+            showAlert("数量必须是一个有效的数字！");
             return;
         }
-        String dealType = dealChoiceBox.getValue();
+        String dealType = tradeTypeChoiceBox.getValue();
         String campus = campusChoiceBox.getValue();
 
         String imagePath = copyImageToStorage(selectedImageFile);
@@ -137,8 +137,7 @@ public class SubmitItemController {
             return "images/" + username + "/" + newFileName;
 
         } catch (IOException e) {
-            e.printStackTrace();
-            // 如果在复制过程中发生任何错误，仍然返回默认图片路径
+            logger.severe("Error occurred: " + e.getMessage());
             return "";
         }
     }
@@ -148,9 +147,9 @@ public class SubmitItemController {
      2设置标题、头部文本和内容文本；
      3显示并等待用户关闭提示框。
     */
-    private void showAlert(String title, String message) {
+    private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("错误");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

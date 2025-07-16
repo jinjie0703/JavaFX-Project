@@ -95,7 +95,6 @@
                             <font><Font name="System Bold" size="18.0" /></font>
                         </Label>
                         <Pane HBox.hgrow="ALWAYS" /> <!-- 一个弹簧，把按钮推到最右边 -->
-                        <Button mnemonicParsing="false" onAction="#handleRefreshData" text="刷新数据" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="15.0" />
