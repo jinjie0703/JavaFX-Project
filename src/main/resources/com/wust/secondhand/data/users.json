@@ -13,5 +13,10 @@
     "username": "bcd1",
     "password": "123",
     "role": "USER"
+  },
+  {
+    "username": "yume",
+    "password": "123",
+    "role": "USER"
   }
 ]

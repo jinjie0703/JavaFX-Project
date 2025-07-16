@@ -21,6 +21,8 @@ public class SubmitItemController {
     @FXML private TextArea descriptionArea;
     @FXML private Label imagePathLabel;
     @FXML private ImageView imageView;
+    @FXML private ChoiceBox<String> dealChoiceBox;
+    @FXML private ChoiceBox<String> campusChoiceBox;
 
     private File selectedImageFile;
 
@@ -29,6 +31,17 @@ public class SubmitItemController {
      2显示对话框并获取用户选择的文件；
      3若选择成功，更新界面显示文件名和图片预览。
     */
+    @FXML
+    public void initialize() {
+        // 可选：确保默认值已设置，如果 FXML 中未处理
+        // 例如，如果你希望“出售”和“黄家湖校区”在加载时被明确设置：
+        // if (dealChoiceBox.getValue() == null) {
+        //     dealChoiceBox.setValue("出售");
+        // }
+        // if (campusChoiceBox.getValue() == null) {
+        //     campusChoiceBox.setValue("黄家湖校区");
+        // }
+    }
     @FXML
     private void handleChooseImage() {
         FileChooser fileChooser = new FileChooser();
@@ -67,6 +80,8 @@ public class SubmitItemController {
             showAlert("错误", "数量必须是一个有效的数字！");
             return;
         }
+        String dealType = dealChoiceBox.getValue();
+        String campus = campusChoiceBox.getValue();
 
         String imagePath = copyImageToStorage(selectedImageFile);
 
@@ -77,7 +92,9 @@ public class SubmitItemController {
                 imagePath,
                 locationField.getText(),
                 contactField.getText(),
-                DataManager.getInstance().getCurrentUser().getUsername()
+                DataManager.getInstance().getCurrentUser().getUsername(),
+                dealType,
+                campus
         );
 
         DataManager.getInstance().addItem(newItem);

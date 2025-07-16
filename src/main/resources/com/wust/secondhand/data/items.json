@@ -31,5 +31,30 @@
     "contact": "123",
     "owner": "abc",
     "status": "APPROVED"
+
+    "id": "97b4c8d9-e108-43ba-a54f-18839e141cd8",
+    "name": "蝴蝶刀",
+    "quantity": 1,
+    "description": "伽马多普勒0.01磨损",
+    "imagePath": "",
+    "tradeLocation": "steam交易报价",
+    "contact": "123",
+    "owner": "yume",
+    "status": "APPROVED",
+    "tradeType": "出售",
+    "campus": "黄家湖校区"
+  },
+  {
+    "id": "9e379d87-c636-4a8c-8722-2206ece4a415",
+    "name": "m9刺刀",
+    "quantity": 1,
+    "description": "自动化",
+    "imagePath": "",
+    "tradeLocation": "steam交易报价",
+    "contact": "12",
+    "owner": "yume",
+    "status": "APPROVED",
+    "tradeType": "出租",
+    "campus": "青山校区"
   }
 ]
