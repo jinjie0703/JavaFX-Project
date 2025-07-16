@@ -31,6 +31,11 @@
     <ImageView fx:id="imagePreview" fitHeight="100" fitWidth="100" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
     <Label text="交易类型:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
     <ChoiceBox fx:id="tradeTypeChoiceBox" layoutX="1.0" layoutY="2.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <Label fx:id="imagePathLabel" text="未选择文件"/>
+    </HBox>
+    <ImageView fx:id="imageView" fitHeight="100" fitWidth="100" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+    <Label text="交易类型：" GridPane.rowIndex="6" />
+    <ChoiceBox fx:id="dealChoiceBox" layoutX="1.0" layoutY="2.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="出售" />
@@ -54,6 +59,7 @@
         </value>
     </ChoiceBox>
     <Button fx:id="submitButton" text="提交" GridPane.rowIndex="8" GridPane.columnIndex="0" GridPane.columnSpan="2" alignment="CENTER" onAction="#handleSubmit"/>
+    <Button text="提交审核" onAction="#handleSubmit" GridPane.rowIndex="7" GridPane.columnIndex="1" alignment="CENTER_RIGHT"/>
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
