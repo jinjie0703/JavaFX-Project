@@ -1,0 +1,23 @@
+.root-container {
+    -fx-padding: 20; /* 原VBox的style="-fx-padding: 20;" */
+    -fx-background-image: url("/com/wust/secondhand/image/register_bg.jpg");
+        -fx-background-size: cover;
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center center;
+}
+
+.title-label {
+    -fx-font-size: 24px; /* 原Label的style属性 */
+}
+
+.input-field {
+    /* 保持FXML中定义的maxWidth和prefHeight，此处仅关联类名 */
+}
+
+.register-button {
+    /* 保持FXML中定义的prefWidth和prefHeight，此处仅关联类名 */
+}
+
+.message-label {
+    -fx-text-fill: red; /* 原Label的style属性 */
+}
