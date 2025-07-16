@@ -31,6 +31,7 @@ public class AdminMainViewController {
     @FXML private ImageView imageView;
     @FXML private Label dealLabel;
     @FXML private Label campusLabel;
+    @FXML private Label locationLabel; // 新增：交易地点字段
 
     private final DataManager dataManager = DataManager.getInstance();
 
@@ -106,6 +107,7 @@ public class AdminMainViewController {
         descriptionArea.setText(item.getDescription());
         dealLabel.setText(item.getTradeType() != null ? item.getTradeType() : "出售");
         campusLabel.setText(item.getCampus() != null ? item.getCampus() : "黄家湖校区");
+        locationLabel.setText(item.getTradeLocation() != null ? item.getTradeLocation() : "未指定"); // 修正方法调用为 getTradeLocation()
         try {
             System.out.println("图片路径: " + item.getImagePath()); // 调试日志
             String absolutePath = "src/main/resources/com/wust/secondhand/" + item.getImagePath();
@@ -185,6 +187,7 @@ public class AdminMainViewController {
         imageView.setImage(null);
         dealLabel.setText("..."); // 清空交易类型
         campusLabel.setText("..."); // 清空校区
+        locationLabel.setText("..."); // 新增：清空交易地点
     }
 
     // 显示提示框

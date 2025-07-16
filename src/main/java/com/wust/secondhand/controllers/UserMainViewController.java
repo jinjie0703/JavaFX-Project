@@ -52,6 +52,8 @@ public class UserMainViewController {
     @FXML private Label detailsQuantityLabel;
     @FXML private Label detailsLocationLabel;
     @FXML private ImageView detailsImageView;
+    @FXML private Label detailsTradeTypeLabel;
+    @FXML private Label detailsCampusLabel;
 
     private final DataManager dataManager = DataManager.getInstance();
     private String currentUsername;
@@ -66,7 +68,7 @@ public class UserMainViewController {
      */
     @FXML
     public void initialize() {
-        // 1. 获取当前用户名
+        // 1. ��取当前用户名
         this.currentUsername = dataManager.getCurrentUser().getUsername();
         welcomeLabel.setText("欢迎, " + currentUsername + "!");
 
@@ -115,7 +117,7 @@ public class UserMainViewController {
         myItemsTable.setItems(myItems);
     }
 
-    /** 用户在搜索框输入关键字后，对“浏览市场”和“我的发布”两个表格中的商品信息进行过滤显示的功能。
+    /** 用户在搜索框输入关键字后，对“浏览市场”和“我的发布”两个表格中的商品信���进行过滤显示的功能。
      1获取用户输入的搜索关键词并转为小写；
      2如果关键词为空，则显示所有已批准的商品和当前用户的发布商品；
      3否则根据关键词对商品名称、描述或联系方式进行匹配过滤，并更新表格内容。
@@ -323,7 +325,7 @@ public class UserMainViewController {
      1参数判断：如果 item == null，则将所有标签文本设为空，图片设为 null
      2信息展示：否则，调用 item 的各个 getter 方法获取属性值，并设置到对应的 UI 标签中
      3图片加载
-     4如果 imagePath 不为空，则拼接资源路径并尝试从类路径中读取图片
+     4如果 imagePath 不为空，则拼���资源路径并尝试从类路径中读取图片
      5成功读取则显示图片，失败则设为 null，防止异常中断程序
      */
     private void showDetails(Item item) {
@@ -336,6 +338,8 @@ public class UserMainViewController {
             detailsOwnerLabel.setText("发布者: ");
             detailsStatusLabel.setText("状态: ");
             detailsLocationLabel.setText("交易地点: ");
+            detailsTradeTypeLabel.setText("交易类型: ");
+            detailsCampusLabel.setText("校区: ");
             detailsImageView.setImage(null);
             return;
         }
@@ -347,6 +351,8 @@ public class UserMainViewController {
         detailsOwnerLabel.setText("发布者: " + item.getOwner());
         detailsStatusLabel.setText("状态: " + item.getStatus().toString());
         detailsLocationLabel.setText("交易地点: " + item.getTradeLocation());
+        detailsTradeTypeLabel.setText("交易类型: " + item.getTradeType());
+        detailsCampusLabel.setText("校区: " + item.getCampus());
         // 图片显示逻辑
         if (item.getImagePath() != null && !item.getImagePath().isEmpty()) {
             String resourcePath = "/com/wust/secondhand/" + item.getImagePath();
@@ -367,7 +373,7 @@ public class UserMainViewController {
     /** 该方法用于显示一个警告或错误提示框，功能如下：
      1创建一个新的 Alert 对象，设置类型为 alertType（如警告或错误）；
      2设置标题为 title，内容文本为 message；
-     3显示并等待用户点击确定按钮。
+     3显示并等���用户点击确定按钮。
      */
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
