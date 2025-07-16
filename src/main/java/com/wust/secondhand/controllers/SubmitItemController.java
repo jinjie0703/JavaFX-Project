@@ -148,6 +148,7 @@ public class SubmitItemController {
      3显示并等待用户关闭提示框。
     */
     private void showAlert(String message) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("错误");
         alert.setHeaderText(null);

@@ -65,6 +65,22 @@ public class AdminMainViewController {
         detailsPane.setVisible(false);
     }
 
+    // 处理手动刷新数据的按钮点击事件
+    // 1打印刷新日志；
+    // 2调用 dataManager.reloadData() 从文件重新加载所有商品数据；
+    // 3更新“待审批”和“已批准”表格，分别显示对应状态的商品；
+    // 4弹出提示框告知用户刷新成功。
+    @FXML
+    private void handleRefreshData() {
+        System.out.println("手动刷新数据...");
+        dataManager.reloadData();
+
+        pendingTable.setItems(dataManager.getItems().filtered(p -> p.getStatus() == ItemStatus.PENDING));
+        approvedTable.setItems(dataManager.getItems().filtered(p -> p.getStatus() == ItemStatus.APPROVED));
+
+        showAlert(Alert.AlertType.INFORMATION, "刷新成功", "数据已从文件重新加载！");
+    }
+
     // 添加表格选择监听器
     // 1获取表格的选择模型；
     // 2监听选中项的变化；
