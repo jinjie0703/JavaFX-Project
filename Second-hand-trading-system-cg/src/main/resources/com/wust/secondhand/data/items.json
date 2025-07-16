@@ -1,0 +1,78 @@
+[
+  {
+    "id": "0598cc13-ce9a-419d-9824-2e2b66eefcb3",
+    "name": "1",
+    "quantity": 1,
+    "description": "1",
+    "imagePath": "",
+    "tradeLocation": "1",
+    "contact": "1",
+    "owner": "abc",
+    "status": "APPROVED"
+  },
+  {
+    "id": "97b4c8d9-e108-43ba-a54f-18839e141cd8",
+    "name": "蝴蝶刀",
+    "quantity": 1,
+    "description": "伽马多普勒0.01磨损",
+    "imagePath": "",
+    "tradeLocation": "steam交易报价",
+    "contact": "123",
+    "owner": "yume",
+    "status": "APPROVED",
+    "tradeType": "出售",
+    "campus": "黄家湖校区"
+  },
+  {
+    "id": "9e379d87-c636-4a8c-8722-2206ece4a415",
+    "name": "m9刺刀",
+    "quantity": 1,
+    "description": "自动化",
+    "imagePath": "",
+    "tradeLocation": "steam交易报价",
+    "contact": "12",
+    "owner": "yume",
+    "status": "APPROVED",
+    "tradeType": "出租",
+    "campus": "青山校区"
+  },
+  {
+    "id": "a63274a1-4091-41b0-ba57-9fb8ba7c4f99",
+    "name": "4",
+    "quantity": 4,
+    "description": "4",
+    "imagePath": "images/abc/1752645010918_20240616_135126_119640233_p0.jpg",
+    "tradeLocation": "4",
+    "contact": "4",
+    "owner": "abc",
+    "status": "APPROVED",
+    "tradeType": "出售",
+    "campus": "黄家湖校区"
+  },
+  {
+    "id": "f41e7983-18f1-40cc-a181-fe4d76612fc4",
+    "name": "gsz",
+    "quantity": 1,
+    "description": "活泼，吃得少，纯正",
+    "imagePath": "images/mjj/1752649448751_285bcd291f5a9881b550336d941c5556.png",
+    "tradeLocation": "南二410",
+    "contact": "1008611",
+    "owner": "mjj",
+    "status": "APPROVED",
+    "tradeType": "出售",
+    "campus": "黄家湖校区"
+  },
+  {
+    "id": "53873bbe-5966-4dbd-8ac4-60ef3493fc6a",
+    "name": "本人帅照",
+    "quantity": 10000,
+    "description": "无需多言",
+    "imagePath": "images/mjj/1752649757155_t01d2442c99e1155fce.jpg",
+    "tradeLocation": "南二410",
+    "contact": "1008611",
+    "owner": "mjj",
+    "status": "APPROVED",
+    "tradeType": "出售",
+    "campus": "黄家湖校区"
+  }
+]
