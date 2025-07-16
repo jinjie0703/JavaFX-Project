@@ -11,25 +11,29 @@
     "status": "APPROVED"
   },
   {
-    "id": "3d68af0b-8f0b-4c28-b344-e55f99dfb344",
-    "name": "1",
+    "id": "97b4c8d9-e108-43ba-a54f-18839e141cd8",
+    "name": "蝴蝶刀",
     "quantity": 1,
-    "description": "1",
+    "description": "伽马多普勒0.01磨损",
     "imagePath": "",
-    "tradeLocation": "1",
-    "contact": "1",
-    "owner": "abc",
-    "status": "APPROVED"
+    "tradeLocation": "steam交易报价",
+    "contact": "123",
+    "owner": "yume",
+    "status": "APPROVED",
+    "tradeType": "出售",
+    "campus": "黄家湖校区"
   },
   {
-    "id": "b6ab2162-f400-4b6c-bb82-2060b00db39d",
-    "name": "123",
-    "quantity": 123,
-    "description": "132",
-    "imagePath": "images/abc/1752542135677_20240616_134356_119225168_p0.jpg",
-    "tradeLocation": "123",
-    "contact": "123",
-    "owner": "abc",
-    "status": "APPROVED"
+    "id": "9e379d87-c636-4a8c-8722-2206ece4a415",
+    "name": "m9刺刀",
+    "quantity": 1,
+    "description": "自动化",
+    "imagePath": "",
+    "tradeLocation": "steam交易报价",
+    "contact": "12",
+    "owner": "yume",
+    "status": "APPROVED",
+    "tradeType": "出租",
+    "campus": "青山校区"
   }
 ]
