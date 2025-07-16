@@ -127,15 +127,19 @@
                         <Label fx:id="quantityLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label style="-fx-font-weight: bold;" text="联系方式:" GridPane.rowIndex="3" />
                         <Label fx:id="contactLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label style="-fx-font-weight: bold;" text="描述:" GridPane.rowIndex="6" />
-                        <TextArea fx:id="descriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label style="-fx-font-weight: bold;" text="图片预览:" GridPane.rowIndex="7" />
-                        <ImageView fx:id="imageView" fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label style="-fx-font-weight: bold;" text="交易类型：" GridPane.rowIndex="4" />
-                        <Label style="-fx-font-weight: bold;" text="校区：" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="dealLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label style="-fx-font-weight: bold;" text="校区：" GridPane.rowIndex="5" />
                         <Label fx:id="campusLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <!-- 新增：交易地点 -->
+                        <Label style="-fx-font-weight: bold;" text="交易地点：" GridPane.rowIndex="6" />
+                        <Label fx:id="locationLabel" text="..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <!-- 描述 -->
+                        <Label style="-fx-font-weight: bold;" text="描述:" GridPane.rowIndex="7" />
+                        <TextArea fx:id="descriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label style="-fx-font-weight: bold;" text="图片预览:" GridPane.rowIndex="8" />
+                        <ImageView fx:id="imageView" fitHeight="180.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                 </GridPane>
             </children>

@@ -35,5 +35,18 @@
     "status": "APPROVED",
     "tradeType": "出租",
     "campus": "青山校区"
+  },
+  {
+    "id": "a63274a1-4091-41b0-ba57-9fb8ba7c4f99",
+    "name": "4",
+    "quantity": 4,
+    "description": "4",
+    "imagePath": "images/abc/1752645010918_20240616_135126_119640233_p0.jpg",
+    "tradeLocation": "4",
+    "contact": "4",
+    "owner": "abc",
+    "status": "APPROVED",
+    "tradeType": "出售",
+    "campus": "黄家湖校区"
   }
 ]

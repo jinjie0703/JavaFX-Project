@@ -29,7 +29,7 @@
         <Button text="选择图片..." onAction="#handleChooseImage"/>
     </HBox>
     <ImageView fx:id="imagePreview" fitHeight="100" fitWidth="100" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-    <Label text="交易方式:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+    <Label text="交易类型:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
     <ChoiceBox fx:id="tradeTypeChoiceBox" layoutX="1.0" layoutY="2.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <items>
             <FXCollections fx:factory="observableArrayList">
