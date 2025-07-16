@@ -18,8 +18,7 @@ public class Item {
     private ItemStatus status; // 保留一个普通的status字段，专门用于JSON存取
     private String tradeType; // 新增字段：交易类型
     private String campus;
-
-    // --- 这个字段用 transient 关键字告诉Gson忽略它 ---
+    // --- 这个字段是JavaFX的属性，用于UI绑定 ---
     private transient ObjectProperty<ItemStatus> statusProperty;
 
     /**
@@ -37,14 +36,14 @@ public class Item {
         this.contact = contact;
         this.owner = owner;
         this.status = ItemStatus.PENDING; // 初始化普通的status字段
-        this.tradeType = tradeType; // 新增
+        this.tradeType = tradeType;
         this.campus = campus;
         // 注意：这里我们不再初始化 statusProperty
     }
 
-    /**
-     * 关键方法：确保JavaFX属性在使用前被正确初始化。
-     * 这个方法会在需要时（比如调用getStatus()或setStatus()）才进行初始化，这叫“懒加载”。
+    /** 确保 statusProperty 已经初始化。
+     * 这个方法会在第一次访问 statusProperty 时被调用，
+     * 并且会添加一个监听器来同步普通的 status 字段。
      */
     private void ensureStatusPropertyInitialized() {
         if (statusProperty == null) {
@@ -57,17 +56,31 @@ public class Item {
         }
     }
 
-    // --- 修改后的 Getter 和 Setter ---
+    /**
+     * 获取当前物品的状态。
+     * 如果 statusProperty 尚未初始化，则会自动初始化它。
+     * @return 当前物品的状态
+     */
     public ItemStatus getStatus() {
         ensureStatusPropertyInitialized();
         return statusProperty.get();
     }
 
+    /**
+     * 设置物品的状态。
+     * 如果 statusProperty 尚未初始化，则会自动初始化它。
+     * @param newStatus 新的物品状态
+     */
     public void setStatus(ItemStatus newStatus) {
         ensureStatusPropertyInitialized();
         this.statusProperty.set(newStatus);
     }
 
+    /** 获取 JavaFX 的状态属性。
+     * 这个方法确保 statusProperty 已经被初始化，
+     * 并返回一个可以绑定到 UI 的属性。
+     * @return JavaFX 的状态属性
+     */
     public ObjectProperty<ItemStatus> statusProperty() {
         ensureStatusPropertyInitialized();
         return statusProperty;
