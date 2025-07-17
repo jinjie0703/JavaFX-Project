@@ -179,7 +179,7 @@ public class DataManager {
                 java.nio.file.Files.deleteIfExists(imageFileToDelete);
                 System.out.println("成功删除了关联图片: " + imageFileToDelete);
             } catch (Exception e) {
-                System.err.println("删除图片文件时���错: " + imagePathString);
+                System.err.println("删除图片文件时出错: " + imagePathString);
                 e.printStackTrace();
             }
         }
