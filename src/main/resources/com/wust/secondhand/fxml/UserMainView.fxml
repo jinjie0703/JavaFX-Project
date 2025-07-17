@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ScrollPane?>
 
 <!-- 用户操作界面 -->
 
@@ -22,7 +23,6 @@
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <!-- 欢迎语和发布按钮 -->
                 <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="welcome-bar" VBox.vgrow="NEVER">
                     <children>
                         <Label fx:id="welcomeLabel">
@@ -30,18 +30,15 @@
                         </Label>
                         <Pane HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleSubmitNewItem" styleClass="publish-button" text="发布我的二手物品" />
-                        <!-- 退出登录按钮 -->
                         <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="logout-button" text="退出登录" />
                     </children>
                 </HBox>
-                <!-- 搜索栏 -->
                 <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="search-bar">
                     <children>
                         <Label text="搜索市场:" />
                         <TextField fx:id="searchField" promptText="输入物品名称、描述或联系方式中的关键字..." styleClass="search-field" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleSearch" styleClass="search-button" text="搜索" />
                         <Button mnemonicParsing="false" onAction="#handleClearSearch" styleClass="clear-button" text="清空" />
-                        <!-- 新增筛选按钮 -->
                         <Button mnemonicParsing="false" onAction="#handleFilter" styleClass="filter-button" text="筛选" />
                     </children>
                 </HBox>
@@ -51,29 +48,34 @@
     <center>
         <HBox spacing="0.0" BorderPane.alignment="CENTER">
             <children>
-                <!-- 左侧TabPane -->
                 <TabPane fx:id="mainTabPane" HBox.hgrow="ALWAYS" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                         <!-- 第一个标签页：浏览所有商品 -->
                         <Tab styleClass="tab-item" text="浏览市场">
                             <content>
-                                <TableView fx:id="marketItemsTable" styleClass="market-table">
-                                    <columns>
-                                        <TableColumn fx:id="marketNameCol" prefWidth="100.0" text="名称" />
-                                        <TableColumn fx:id="marketDescCol" prefWidth="150.0" text="描述" />
-                                        <TableColumn fx:id="marketContactCol" prefWidth="100.0" text="联系方式" />
-                                        <TableColumn fx:id="marketOwnerCol" prefWidth="80.0" text="发布者" />
-                                        <TableColumn fx:id="marketDelCol" prefWidth="70.0" text="交易类型" />
-                                        <TableColumn fx:id="marketCampusCol" prefWidth="100.0" text="校区" />
-                                    </columns>
-                                </TableView>
+                                <!-- 【最终结构】: ScrollPane 直接包裹 TableView -->
+                                <ScrollPane fx:id="marketScrollPane" fitToWidth="true" pannable="true">
+                                    <content>
+                                        <TableView fx:id="marketItemsTable" styleClass="market-table">
+                                            <columns>
+                                                <TableColumn fx:id="marketNameCol" prefWidth="100.0" text="名称" />
+                                                <TableColumn fx:id="marketDescCol" prefWidth="150.0" text="描述" />
+                                                <TableColumn fx:id="marketContactCol" prefWidth="100.0" text="联系方式" />
+                                                <TableColumn fx:id="marketOwnerCol" prefWidth="80.0" text="发布者" />
+                                                <TableColumn fx:id="marketDelCol" prefWidth="70.0" text="交易类型" />
+                                                <TableColumn fx:id="marketCampusCol" prefWidth="100.0" text="校区" />
+                                            </columns>
+                                        </TableView>
+                                    </content>
+                                </ScrollPane>
                             </content>
                         </Tab>
-                        <!-- 第二个标签页：管理我的发布 -->
+                        <!-- 第二个标签页：管理我的发布 (最终修正版) -->
                         <Tab styleClass="tab-item" text="我的发布">
                             <content>
                                 <VBox spacing="10.0" styleClass="my-posts-container">
                                     <children>
+                                        <!-- 【重要】删除了ScrollPane，并将 vgrow 直接应用到 TableView -->
                                         <TableView fx:id="myItemsTable" styleClass="my-items-table" VBox.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="myNameCol" prefWidth="100.0" text="名称" />
@@ -83,18 +85,13 @@
                                                 <TableColumn fx:id="myCampusCol" prefWidth="80.0" text="校区" />
                                             </columns>
                                         </TableView>
-                                        <HBox alignment="CENTER_RIGHT" styleClass="delete-button-container">
-                                            <children>
-                                                <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" styleClass="delete-button" text="删除选中项 (交易完成)" />
-                                            </children>
-                                        </HBox>
                                     </children>
                                 </VBox>
                             </content>
                         </Tab>
                     </tabs>
                 </TabPane>
-                <!-- 右侧详情栏 -->
+                <!-- 右侧详情栏 (保持不变) -->
                 <VBox fx:id="detailsPane" HBox.hgrow="ALWAYS" maxWidth="488.0" minWidth="220.0" prefHeight="617.0" prefWidth="488.0" spacing="10.0" styleClass="details-pane">
                     <children>
                         <Label styleClass="details-title" text="物品详情" />
@@ -114,9 +111,9 @@
             </children>
         </HBox>
     </center>
-   <stylesheets>
-      <URL value="@../css/views/UserMain.css" />
-      <URL value="@../css/components/buttons.css" />
-       <URL value="@../css/base.css" />
-   </stylesheets>
+    <stylesheets>
+        <URL value="@../css/views/UserMain.css" />
+        <URL value="@../css/components/buttons.css" />
+        <URL value="@../css/base.css" />
+    </stylesheets>
 </BorderPane>

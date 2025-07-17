@@ -14,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-
+import javafx.beans.binding.Bindings;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -34,6 +34,7 @@ public class UserMainViewController {
     @FXML private TableColumn<Item, String> marketOwnerCol;
     @FXML private TableColumn<Item, String> marketDelCol;
     @FXML private TableColumn<Item, String> marketCampusCol;
+    @FXML private ScrollPane marketScrollPane;
 
     // --- “我的发布” Tab 组件 ---
     @FXML private TableView<Item> myItemsTable;
@@ -81,13 +82,34 @@ public class UserMainViewController {
         // 3. 配置“我的发布”的表格
         setupMyItemsTable();
 
-        // 4. 为两个表格都添加选中项变化监听器，自动更新右侧详情栏
+        double rowHeight = 30.0;
+
+        // 为“浏览市场”的表格设置高度绑定
+        // 公式：首选高度 = (数据行数 * 每行高度) + 表头高度 (约40像素)
+        marketItemsTable.setFixedCellSize(rowHeight);
+        marketItemsTable.prefHeightProperty().bind(
+                marketItemsTable.fixedCellSizeProperty().multiply(Bindings.size(marketItemsTable.getItems()).add(1.01))
+        );
+
+        // 为“我的发布”的表格设置高度绑定
+        myItemsTable.setFixedCellSize(rowHeight);
+        myItemsTable.prefHeightProperty().bind(
+                myItemsTable.fixedCellSizeProperty().multiply(Bindings.size(myItemsTable.getItems()).add(1.01))
+        );
+
+        // 为“浏览市场”的表格设置选中项监听器
         marketItemsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> showDetails(newVal));
+        // 为“我的发布”的表格设置选中项监听器
         myItemsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> showDetails(newVal));
+
+        if (marketScrollPane != null) {
+            marketScrollPane.setFitToWidth(true);
+            marketScrollPane.setFitToHeight(true);
+        }
     }
 
     /** 该方法用于配置“浏览市场”表格，功能如下：
-     1将表格各列绑定到Item类的对应属性（名称、描述、联系方式、发布者）。
+     1将表格各列绑定到Item类的对应属性（名称、描述、联系方���、发布者）。
      2从数据管理器中获取所有商品，并过滤出状态为APPROVED（已上架）的商品展示在表格中。
      */
     private void setupMarketTable() {
@@ -186,7 +208,7 @@ public class UserMainViewController {
                 FilteredList<Item> filtered = new FilteredList<>(dataManager.getItems(), item -> {
                     boolean approved = item.getStatus() == ItemStatus.APPROVED;
                     boolean campusMatch = selectedCampus.equals("全部") || (item.getCampus() != null && item.getCampus().equals(selectedCampus));
-                    boolean tradeMatch = selectedTradeType.equals("全部") || (item.getTradeType() != null && item.getTradeType().equals(selectedTradeType));
+                    boolean tradeMatch = selectedTradeType.equals("全���") || (item.getTradeType() != null && item.getTradeType().equals(selectedTradeType));
                     return approved && campusMatch && tradeMatch;
                 });
 
