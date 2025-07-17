@@ -1,5 +1,4 @@
 .root-container {
-    -fx-background-image: url("/com/wust/secondhand/image/usermain.jpg");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
