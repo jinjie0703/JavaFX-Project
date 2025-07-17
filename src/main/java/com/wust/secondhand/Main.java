@@ -66,7 +66,7 @@ public class Main extends Application {
      * @throws IOException 如果加载FXML文件失败
      */
     public static void showUserView() throws IOException {
-        Scene scene = FxmlManager.load("/com/wust/secondhand/fxml/UserMainView.fxml", 1080, 600);
+        Scene scene = FxmlManager.load("/com/wust/secondhand/fxml/UserMainView.fxml", 1080, 700);
         primaryStage.setTitle("武科大二手市场");
         primaryStage.setScene(scene);
         primaryStage.setX(350); // 设置窗口左上角X坐标
