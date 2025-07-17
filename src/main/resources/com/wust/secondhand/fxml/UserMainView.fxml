@@ -85,6 +85,13 @@
                                                 <TableColumn fx:id="myCampusCol" prefWidth="80.0" text="校区" />
                                             </columns>
                                         </TableView>
+
+                                        <!-- 这个 HBox 保持不变，它会自动待在底部 -->
+                                        <HBox alignment="CENTER_RIGHT" styleClass="delete-button-container">
+                                            <children>
+                                                <Button mnemonicParsing="false" onAction="#handleDeleteMyItem" styleClass="delete-button" text="删除选中项 (交易完成)" />
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </VBox>
                             </content>
