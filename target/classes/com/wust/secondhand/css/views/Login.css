@@ -1,0 +1,30 @@
+
+.root-container {
+    -fx-background-image: url("/com/wust/secondhand/image/login_bg.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.title-label {
+    -fx-font-size: 24px; /* 原标题Label的style属性 */
+    -fx-font-family: "华文楷体";
+    -fx-font-weight: bold; /* 原标题Label的style属性 */
+}
+
+.input-field {
+    /* 保持FXML中定义的maxWidth和prefHeight，仅关联类名 */
+}
+
+.button-container {
+    /* 保持FXML中定义的alignment、spacing和maxWidth，仅关联类名 */
+}
+
+.login-button, .register-button {
+    -fx-background-radius: 11px; /* 圆角按钮 */
+    /*     -fx-font-size: 14px;可选：字体大小 */
+}
+
+.error-label {
+    -fx-text-fill: red; /* 原错误消息Label的style属性 */
+}
