@@ -37,9 +37,12 @@ src/
                         css/
                             components/
                                 button.css
-                                table.css
                             views/
-                                base.css
+                                AdminMain.css
+                                Login.css
+                                Register.css
+                                SubmitItem.css
+                                UserMain.css
                         data/
                             items.json
                             users.json
@@ -49,11 +52,12 @@ src/
                             RegisterView.fxml
                             SubmitItemView.fxml
                             UserMainView.fxml
-                        images/
+                        image/
                             login_bg.png
                             register_bg.png
                             usermain.jpg
-                            users.image/
+                        images/
+                            users1/
                               ...
                             
 ```

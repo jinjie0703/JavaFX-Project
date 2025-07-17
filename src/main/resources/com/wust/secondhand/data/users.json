@@ -5,22 +5,52 @@
     "role": "ADMIN"
   },
   {
-    "username": "abc",
+    "username": "user1",
     "password": "123",
     "role": "USER"
   },
   {
-    "username": "bcd1",
+    "username": "user2",
     "password": "123",
     "role": "USER"
   },
   {
-    "username": "yume",
+    "username": "user3",
     "password": "123",
     "role": "USER"
   },
   {
-    "username": "gsz",
+    "username": "user4",
+    "password": "123",
+    "role": "USER"
+  },
+  {
+    "username": "user5",
+    "password": "123",
+    "role": "USER"
+  },
+  {
+    "username": "user6",
+    "password": "123",
+    "role": "USER"
+  },
+  {
+    "username": "user7",
+    "password": "123",
+    "role": "USER"
+  },
+  {
+    "username": "user8",
+    "password": "123",
+    "role": "USER"
+  },
+  {
+    "username": "user9",
+    "password": "123",
+    "role": "USER"
+  },
+  {
+    "username": "user10",
     "password": "123",
     "role": "USER"
   }

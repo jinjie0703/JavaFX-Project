@@ -43,6 +43,11 @@ public class SubmitItemController {
         //     campusChoiceBox.setValue("黄家湖校区");
         // }
     }
+    /** 该方法处理选择图片文件的点击事件：
+     1创建文件选择对话框，设置标题和图片格式过滤器；
+     2显示对话框并获取用户选择的文件；
+     3若选择成功，更新界面显示文件名和图片预览。
+    */
     @FXML
     private void handleChooseImage() {
         FileChooser fileChooser = new FileChooser();
@@ -119,23 +124,17 @@ public class SubmitItemController {
         try {
             // 1. 获取当前用户名
             String username = DataManager.getInstance().getCurrentUser().getUsername();
-
             // 2. 构建以用户名为基础的目标文件夹路径
             Path userImageDir = Paths.get("src/main/resources/com/wust/secondhand/images/" + username);
-
             // 3. 确保这个文件夹存在，如果不存在，则创建它（包括父目录）
             Files.createDirectories(userImageDir);
-
             // 4. 构建新的文件名和最终的目标路径
             String newFileName = System.currentTimeMillis() + "_" + imageFile.getName();
             Path targetPath = userImageDir.resolve(newFileName);
-
             // 5. 复制文件
             Files.copy(imageFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-
             // 6. 返回包含了用户名文件夹的相对路径
             return "images/" + username + "/" + newFileName;
-
         } catch (IOException e) {
             logger.severe("Error occurred: " + e.getMessage());
             return "";

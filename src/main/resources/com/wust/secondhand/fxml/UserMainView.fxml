@@ -52,19 +52,19 @@
         <HBox spacing="0.0" BorderPane.alignment="CENTER">
             <children>
                 <!-- 左侧TabPane -->
-                <TabPane fx:id="mainTabPane" prefWidth="500.0" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
+                <TabPane fx:id="mainTabPane" HBox.hgrow="ALWAYS" styleClass="main-tab-pane" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                         <!-- 第一个标签页：浏览所有商品 -->
                         <Tab styleClass="tab-item" text="浏览市场">
                             <content>
                                 <TableView fx:id="marketItemsTable" styleClass="market-table">
                                     <columns>
-                                        <TableColumn fx:id="marketNameCol" prefWidth="150.0" text="名称" />
-                                        <TableColumn fx:id="marketDescCol" prefWidth="350.0" text="描述" />
-                                        <TableColumn fx:id="marketContactCol" prefWidth="120.0" text="联系方式" />
-                                        <TableColumn fx:id="marketOwnerCol" prefWidth="120.0" text="发布者" />
-                                        <TableColumn fx:id="marketDelCol" prefWidth="120.0" text="交易类型" />
-                                        <TableColumn fx:id="marketCampusCol" prefWidth="120.0" text="校区" />
+                                        <TableColumn fx:id="marketNameCol" prefWidth="100.0" text="名称" />
+                                        <TableColumn fx:id="marketDescCol" prefWidth="150.0" text="描述" />
+                                        <TableColumn fx:id="marketContactCol" prefWidth="100.0" text="联系方式" />
+                                        <TableColumn fx:id="marketOwnerCol" prefWidth="80.0" text="发布者" />
+                                        <TableColumn fx:id="marketDelCol" prefWidth="70.0" text="交易类型" />
+                                        <TableColumn fx:id="marketCampusCol" prefWidth="100.0" text="校区" />
                                     </columns>
                                 </TableView>
                             </content>
@@ -76,11 +76,11 @@
                                     <children>
                                         <TableView fx:id="myItemsTable" styleClass="my-items-table" VBox.vgrow="ALWAYS">
                                             <columns>
-                                                <TableColumn fx:id="myNameCol" prefWidth="150.0" text="名称" />
+                                                <TableColumn fx:id="myNameCol" prefWidth="100.0" text="名称" />
                                                 <TableColumn fx:id="myStatusCol" prefWidth="100.0" text="状态" />
-                                                <TableColumn fx:id="myDescCol" prefWidth="400.0" text="描述" />
-                                                <TableColumn fx:id="myDealCol" prefWidth="120.0" text="交易类型" />
-                                                <TableColumn fx:id="myCampusCol" prefWidth="120.0" text="校区" />
+                                                <TableColumn fx:id="myDescCol" prefWidth="250.0" text="描述" />
+                                                <TableColumn fx:id="myDealCol" prefWidth="70.0" text="交易类型" />
+                                                <TableColumn fx:id="myCampusCol" prefWidth="80.0" text="校区" />
                                             </columns>
                                         </TableView>
                                         <HBox alignment="CENTER_RIGHT" styleClass="delete-button-container">
@@ -95,7 +95,7 @@
                     </tabs>
                 </TabPane>
                 <!-- 右侧详情栏 -->
-                <VBox fx:id="detailsPane" maxWidth="488.0" minWidth="220.0" prefHeight="617.0" prefWidth="488.0" spacing="10.0" styleClass="details-pane">
+                <VBox fx:id="detailsPane" HBox.hgrow="ALWAYS" maxWidth="488.0" minWidth="220.0" prefHeight="617.0" prefWidth="488.0" spacing="10.0" styleClass="details-pane">
                     <children>
                         <Label styleClass="details-title" text="物品详情" />
                         <Label fx:id="detailsIdLabel" styleClass="details-label" text="ID: " />
