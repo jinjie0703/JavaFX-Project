@@ -23,10 +23,7 @@
 
     <!-- 左侧区域：包含待审核和已上架列表 -->
     <left>
-        <VBox prefWidth="350.0" spacing="10.0" styleClass="left-container"
-              maxHeight="Infinity"
-              maxWidth="Infinity"
-              VBox.vgrow="ALWAYS" BorderPane.alignment="CENTER">
+        <VBox prefWidth="350.0" spacing="10.0" styleClass="left-container" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
@@ -37,7 +34,7 @@
                         <Label styleClass="section-title" text="待审核物品">
                             <font><Font name="System Bold" size="16.0" /></font>
                         </Label>
-                        <TableView fx:id="pendingTable" prefHeight="200.0" styleClass="pending-table"  VBox.vgrow="ALWAYS">
+                        <TableView fx:id="pendingTable" prefHeight="200.0" styleClass="pending-table">
                             <columns>
                                 <TableColumn fx:id="pendingNameCol" prefWidth="200.0" text="物品名称" />
                                 <TableColumn fx:id="pendingOwnerCol" prefWidth="100.0" text="发布者" />
@@ -59,7 +56,7 @@
                         <Label styleClass="section-title" text="已上架物品">
                             <font><Font name="System Bold" size="16.0" /></font>
                         </Label>
-                        <TableView fx:id="approvedTable" prefHeight="200.0" styleClass="approved-table"  VBox.vgrow="ALWAYS">
+                        <TableView fx:id="approvedTable" prefHeight="200.0" styleClass="approved-table">
                             <columns>
                                 <TableColumn fx:id="approvedNameCol" prefWidth="200.0" text="物品名称" />
                                 <TableColumn fx:id="approvedOwnerCol" prefWidth="100.0" text="发布者" />
@@ -88,10 +85,7 @@
 
     <!-- 右侧区域：显示物品详情 -->
     <right>
-        <VBox prefWidth="600.0" spacing="10.0" maxHeight="Infinity"
-              maxWidth="Infinity"
-              VBox.vgrow="ALWAYS"
-              styleClass="right-container" BorderPane.alignment="CENTER">
+        <VBox prefWidth="600.0" spacing="10.0" styleClass="right-container" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>

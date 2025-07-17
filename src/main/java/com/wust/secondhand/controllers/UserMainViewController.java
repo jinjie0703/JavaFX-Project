@@ -177,7 +177,6 @@ public class UserMainViewController {
         grid.add(tradeTypeBox, 1, 1);
 
         dialog.getDialogPane().setContent(grid);
-
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == filterButtonType) {
                 String selectedCampus = campusBox.getValue();
