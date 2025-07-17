@@ -109,7 +109,7 @@ public class UserMainViewController {
     }
 
     /** 该方法用于配置“浏览市场”表格，功能如下：
-     1将表格各列绑定到Item类的对应属性（名称、描述、联系方���、发布者）。
+     1将表格各列绑定到Item类的对应属性（名称、描述、联系方式、发布者）。
      2从数据管理器中获取所有商品，并过滤出状态为APPROVED（已上架）的商品展示在表格中。
      */
     private void setupMarketTable() {
@@ -142,7 +142,7 @@ public class UserMainViewController {
         myItemsTable.setItems(myItems);
     }
 
-    /** 用户在搜索框输入关键字后，对“浏览市场”和“我的发布”两个表格中的商品信���进行过滤显示的功能。
+    /** 用户在搜索框输入关键字后，对“浏览市场”和“我的发布”两个表格中的商品信息进行过滤显示的功能。
      1获取用户输入的搜索关键词并转为小写；
      2如果关键词为空，则显示所有已批准的商品和当前用户的发布商品；
      3否则根据关键词对商品名称、描述或联系方式进行匹配过滤，并更新表格内容。
@@ -208,7 +208,7 @@ public class UserMainViewController {
                 FilteredList<Item> filtered = new FilteredList<>(dataManager.getItems(), item -> {
                     boolean approved = item.getStatus() == ItemStatus.APPROVED;
                     boolean campusMatch = selectedCampus.equals("全部") || (item.getCampus() != null && item.getCampus().equals(selectedCampus));
-                    boolean tradeMatch = selectedTradeType.equals("全���") || (item.getTradeType() != null && item.getTradeType().equals(selectedTradeType));
+                    boolean tradeMatch = selectedTradeType.equals("全部") || (item.getTradeType() != null && item.getTradeType().equals(selectedTradeType));
                     return approved && campusMatch && tradeMatch;
                 });
 
@@ -314,7 +314,7 @@ public class UserMainViewController {
      1参数判断：如果 item == null，则将所有标签文本设为空，图片设为 null
      2信息展示：否则，调用 item 的各个 getter 方法获取属性值，并设置到对应的 UI 标签中
      3图片加载
-     4如果 imagePath 不为空，则拼���资源路径并尝试从类路径中读取图片
+     4如果 imagePath 不为空，则尝试从类路径中读取图片
      5成功读取则显示图片，失败则设为 null，防止异常中断程序
      */
     private void showDetails(Item item) {
@@ -362,7 +362,7 @@ public class UserMainViewController {
     /** 该方法用于显示一个警告或错误提示框，功能如下：
      1创建一个新的 Alert 对象，设置类型为 alertType（如警告或错误）；
      2设置标题为 title，内容文本为 message；
-     3显示并等���用户点击确定按钮。
+     3显示并等待用户点击确定按钮。
      */
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
