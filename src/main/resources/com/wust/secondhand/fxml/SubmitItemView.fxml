@@ -83,7 +83,7 @@
         <RowConstraints />
     </rowConstraints>
    <stylesheets>
-      <URL value="@../css/views/Submitltem.css" />
+      <URL value="@../css/views/SubmitItem.css" />
       <URL value="@../css/base.css" />
    </stylesheets>
 </GridPane>

@@ -1,0 +1,46 @@
+
+.root-grid {
+    -fx-padding: 20;
+    -fx-background-color: #E6F0FA; /* 淡蓝色 */
+}
+
+.label-item {
+    /* 无额外样式，保持JavaFX默认标签样式 */
+}
+
+.textfield-item {
+    /* 无额外样式，保持JavaFX默认TextField样式 */
+}
+
+.textarea-item {
+    /* 无额外样式，保持JavaFX默认TextArea样式 */
+}
+
+.image-hbox {
+    /* 原HBox的spacing="10"已在FXML中定义，此处仅关联类名 */
+}
+
+.image-button {
+    /* 无额外样式，保持JavaFX默认Button样式 */
+}
+
+.image-preview {
+
+}
+
+.choicebox-item {
+
+}
+
+.submit-button {
+    -fx-background-color: linear-gradient(to bottom, #4CAF50, #388E3C);
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.25) , 3,0,0,1 );
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-focus-color: transparent;
+
+}

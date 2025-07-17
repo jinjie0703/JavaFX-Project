@@ -42,7 +42,7 @@ public class Main extends Application {
      * @throws IOException 如果加载FXML文件失败
      */
     public static void showLoginView() throws IOException {
-        Scene scene = FxmlManager.load("fxml/LoginView.fxml", 380, 280);
+        Scene scene = FxmlManager.load("/com/wust/secondhand/fxml/LoginView.fxml", 380, 280);
         primaryStage.setTitle("登录 - 武科大二手交易");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -53,9 +53,12 @@ public class Main extends Application {
      * @throws IOException 如果加载FXML文件失败
      */
     public static void showAdminView() throws IOException {
-        Scene scene = FxmlManager.load("fxml/AdminMainView.fxml", 1000, 600);
+        Scene scene = FxmlManager.load("/com/wust/secondhand/fxml/AdminMainView.fxml", 1000, 600);
         primaryStage.setTitle("管理员后台");
         primaryStage.setScene(scene);
+        primaryStage.setX(300); // 设置窗口左上角X坐标
+        primaryStage.setY(150); // 设置窗口左上角Y坐标
+        primaryStage.show();
     }
 
     /**
@@ -63,9 +66,12 @@ public class Main extends Application {
      * @throws IOException 如果加载FXML文件失败
      */
     public static void showUserView() throws IOException {
-        Scene scene = FxmlManager.load("fxml/UserMainView.fxml", 1000, 600);
+        Scene scene = FxmlManager.load("/com/wust/secondhand/fxml/UserMainView.fxml", 1080, 600);
         primaryStage.setTitle("武科大二手市场");
         primaryStage.setScene(scene);
+        primaryStage.setX(350); // 设置窗口左上角X坐标
+        primaryStage.setY(150); // 设置窗口左上角Y坐标
+        primaryStage.show();
     }
 
     /**

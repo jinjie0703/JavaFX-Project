@@ -61,7 +61,7 @@
 
 /* 我的发布区域容器 */
 .my-posts-container {
-    -fx-padding: 10px; /* 原VBox的Insets */
+    -fx-padding: 0px; /* 原VBox的Insets */
     -fx-spacing: 10px;
 }
 
